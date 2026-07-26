@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Baby Studio — Newborn & Maternity Photography</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-follower" id="cursorFollower"></div>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <img src="assets/logo/ThebabyStudio-logo (1).png" alt="The Baby Studio Logo" class="logo-icon" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="logo-icon fallback">B</div>
+                <div class="logo-text">
+                    <span class="logo-main">The Baby Studio</span>
+                    <span class="logo-sub">Photography & Film</span>
+                </div>
+            </a>
+            
+            <div class="nav-menu" id="navMenu">
+                <a href="#about" class="nav-link">About</a>
+                <a href="#services" class="nav-link">Services</a>
+                <a href="#portfolio" class="nav-link">Portfolio</a>
+                <a href="#reviews" class="nav-link">Reviews</a>
+                <a href="#packages" class="nav-link">Packages</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+
+            <a href="#contact" class="nav-cta">Book a Session</a>
+            
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-background">
+            <div class="hero-gradient"></div>
+        </div>
+        
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="badge-icon">✦</span>
+                <span class="badge-text">Award-Winning Studio</span>
+            </div>
+            
+            <h1 class="hero-title">
+                Capturing your <span class="italic">tiniest moments</span>, forever
+            </h1>
+            
+            <p class="hero-subtitle">
+                Serving Nashik families with gentle newborn, baby, maternity, family and milestone photography.
+            </p>
+            
+            <div class="hero-actions">
+                <a href="#contact" class="btn btn-primary">
+                    <span>Book Your Session</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+                <a href="#portfolio" class="btn btn-secondary">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="5 3 19 12 5 21 5 3"/>
+                    </svg>
+                    <span>View Portfolio</span>
+                </a>
+            </div>
+            
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number">2000+</div>
+                    <div class="stat-label">Families Captured</div>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <div class="stat-number">12+</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <div class="stat-number">150+</div>
+                    <div class="stat-label">Happy Reviews</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="hero-visual">
+                <div class="hero-image-placeholder">
+                    <img src="assets/images/hero/Infant.jpg" alt="Infant portrait" class="hero-img">
+                </div>
+        </div>
+        
+        <div class="hero-scroll">
+            <span>Scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- Marquee -->
+    <div class="marquee">
+        <div class="marquee-content">
+            <span>Newborn Photography</span>
+            <span class="marquee-separator">✦</span>
+            <span>Maternity Sessions</span>
+            <span class="marquee-separator">✦</span>
+            <span>Baby Milestones</span>
+            <span class="marquee-separator">✦</span>
+            <span>Cake Smash</span>
+            <span class="marquee-separator">✦</span>
+            <span>Family Portraits</span>
+            <span class="marquee-separator">✦</span>
+            <span>Safe & Gentle Studio</span>
+            <span class="marquee-separator">✦</span>
+            <span>Newborn Photography</span>
+            <span class="marquee-separator">✦</span>
+            <span>Maternity Sessions</span>
+            <span class="marquee-separator">✦</span>
+            <span>Baby Milestones</span>
+            <span class="marquee-separator">✦</span>
+            <span>Cake Smash</span>
+            <span class="marquee-separator">✦</span>
+            <span>Family Portraits</span>
+            <span class="marquee-separator">✦</span>
+            <span>Safe & Gentle Studio</span>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="about-container">
+                <div class="about-visual">
+                <div class="about-image-main">
+                    <div class="image-placeholder">
+                        <img src="assets/images/hero/Newborn.jpg" alt="Newborn portrait" class="about-main-img">
+                    </div>
+                </div>
+                <div class="about-image-accent">
+                    <div class="image-placeholder">
+                        <img src="assets/images/hero/Maternity.jpg" alt="Maternity portrait" class="about-accent-img">
+                    </div>
+                </div>
+                <div class="about-decoration">
+                    <div class="decoration-line"></div>
+                </div>
+            </div>
+            
+            <div class="about-content">
+                <div class="section-header">
+                    <span class="section-eyebrow">Our Story</span>
+                    <h2 class="section-title">Where love becomes <span class="italic">a lasting image</span></h2>
+                </div>
+                
+                <p class="about-text">
+                    The Baby Studio is a Nashik-based newborn, baby and family photography studio founded by
+                    Ashish Jadhav, Swaroop Dawkhare and Pranjal Kothawade. With over 12 years of experience,
+                    we create warm, timeless images for families across Maharashtra.
+                </p>
+                
+                <p class="about-text">
+                    We specialize in newborn photoshoots, baby milestone sessions, cake smash celebrations,
+                    birthday portraits, maternity photography, family portraits and outdoor shoots.
+                    Our studio is designed for comfort, creative styling and calm family moments.
+                </p>
+                
+                <p class="about-text">
+                    Located at Nishigandha Banglow near Mumbai Naka Circle in Nashik, our studio is a safe,
+                    gentle space with carefully curated props, soothing temperature control and handcrafted textures.
+                </p>
+                
+                <div class="about-awards">
+                    <div class="award-card">
+                        <div class="award-icon">👨‍👩‍👧‍👦</div>
+                        <div class="award-text">Founded by Ashish, Swaroop &amp; Pranjal</div>
+                    </div>
+                    <div class="award-card">
+                        <div class="award-icon">⏳</div>
+                        <div class="award-text">12+ Years of Experience</div>
+                    </div>
+                    <div class="award-card">
+                        <div class="award-icon">🤍</div>
+                        <div class="award-text">Trusted by Nashik Families</div>
+                    </div>
+                </div>
+                
+                <div class="about-signature">
+                    <span class="signature-text">The Baby Studio Team</span>
+                    <span class="signature-title">Professional Newborn Photographers</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="services-container">
+            <div class="section-header center">
+                <span class="section-eyebrow">What We Offer</span>
+                <h2 class="section-title">Sessions crafted <span class="italic">with intention</span></h2>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-number">01</div>
+                    <div class="service-icon">👶</div>
+                    <h3 class="service-title">Newborn Photoshoot</h3>
+                    <p class="service-description">
+                        Gentle, calming newborn sessions designed for the first two weeks of life. We capture
+                        sleepy poses, tiny details and family portraits in a warm studio environment.
+                    </p>
+                    <a href="#packages" class="service-link">
+                        View Packages
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-number">02</div>
+                    <div class="service-icon">🤰</div>
+                    <h3 class="service-title">Maternity Photoshoot</h3>
+                    <p class="service-description">
+                        Celebrating your journey into motherhood with elegant portraits that highlight connection,
+                        movement and the glow of pregnancy.
+                    </p>
+                    <a href="#packages" class="service-link">
+                        View Packages
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-number">03</div>
+                    <div class="service-icon">🎂</div>
+                    <h3 class="service-title">Cake Smash & Birthday</h3>
+                    <p class="service-description">
+                        Joyful first-birthday and milestone cake-smash sessions with colourful styling and playful
+                        details that celebrate your child’s personality.
+                    </p>
+                    <a href="#packages" class="service-link">
+                        View Packages
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-number">04</div>
+                    <div class="service-icon">🍼</div>
+                    <h3 class="service-title">Baby Photoshoot</h3>
+                    <p class="service-description">
+                        Sweet baby milestone sessions for 3, 6, 9 and 12 months that capture personality,
+                        expressions and the joy of growing up.
+                    </p>
+                    <a href="#packages" class="service-link">
+                        View Packages
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-number">05</div>
+                    <div class="service-icon">👨‍👩‍👧</div>
+                    <h3 class="service-title">Family Portraits</h3>
+                    <p class="service-description">
+                        Relaxed family sessions that celebrate the love between parents, siblings and babies in
+                        natural, heartfelt images.
+                    </p>
+                    <a href="#packages" class="service-link">
+                        View Packages
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-number">06</div>
+                    <div class="service-icon">🌿</div>
+                    <h3 class="service-title">Outdoor Photoshoot</h3>
+                    <p class="service-description">
+                        Beautiful outdoor sessions that capture natural light, seasonal scenery, and candid
+                        moments for families and babies.
+                    </p>
+                    <a href="#contact" class="service-link">
+                        Book Now
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="portfolio" id="portfolio">
+        <div class="portfolio-container">
+            <div class="portfolio-header">
+                <div class="section-header">
+                    <span class="section-eyebrow">Portfolio</span>
+                    <h2 class="section-title">A glimpse into <span class="italic">our world</span></h2>
+                </div>
+                
+                <div class="portfolio-filters">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="newborn">Newborn</button>
+                    <button class="filter-btn" data-filter="maternity">Maternity</button>
+                    <button class="filter-btn" data-filter="family">Family</button>
+                </div>
+            </div>
+            
+            <div class="portfolio-grid">
+                <div class="portfolio-item" data-category="newborn">
+                    <div class="portfolio-image gc-1">
+                        <img src="assets/images/gallery/drive-download-20260621T123026Z-3-001/Collage B2.jpg" alt="Collage" />
+                        <span class="portfolio-label">Newborn</span>
+                    </div>
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">Serene & Wrapped</h3>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item" data-category="maternity">
+                    <div class="portfolio-image gc-2">
+                        <img src="assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_0593.jpg" alt="Maternity" />
+                        <span class="portfolio-label">Maternity</span>
+                    </div>
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">Golden Hour</h3>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item" data-category="newborn">
+                    <div class="portfolio-image gc-3">
+                        <img src="assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_0862.jpg" alt="Baby" />
+                        <span class="portfolio-label">Baby</span>
+                    </div>
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">First Smile</h3>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item" data-category="family">
+                    <div class="portfolio-image gc-4">
+                        <img src="assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_1321.jpg" alt="Family" />
+                        <span class="portfolio-label">Family</span>
+                    </div>
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">Pure Connection</h3>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item" data-category="newborn">
+                    <div class="portfolio-image gc-5">
+                        <img src="assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_1941.jpg" alt="Newborn" />
+                        <span class="portfolio-label">Newborn</span>
+                    </div>
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">Gentle Dreams</h3>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item" data-category="newborn">
+                    <div class="portfolio-image gc-6">
+                        <img src="assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_2059.jpg" alt="Cake Smash" />
+                        <span class="portfolio-label">Cake Smash</span>
+                    </div>
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">Sweet One</h3>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item" data-category="maternity">
+                    <div class="portfolio-image gc-7">
+                        <img src="assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_2974.jpg" alt="Maternity" />
+                        <span class="portfolio-label">Maternity</span>
+                    </div>
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">The Journey</h3>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item" data-category="family">
+                    <div class="portfolio-image gc-8">
+                        <img src="assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_3317.jpg" alt="Family" />
+                        <span class="portfolio-label">Family</span>
+                    </div>
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">Forever Yours</h3>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="portfolio-cta">
+                <a href="#contact" class="btn btn-primary">Book a Session</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process">
+        <div class="process-container">
+            <div class="section-header center">
+                <span class="section-eyebrow">How It Works</span>
+                <h2 class="section-title">From inquiry to <span class="italic">heirloom images</span></h2>
+            </div>
+            
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">01</div>
+                    <h3 class="step-title">Enquiry & Consult</h3>
+                    <p class="step-description">
+                        Reach out via our booking form. We'll discuss your vision, answer questions, and guide you 
+                        through the options that suit your family best.
+                    </p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">02</div>
+                    <h3 class="step-title">Secure Your Date</h3>
+                    <p class="step-description">
+                        A small deposit holds your chosen session date. We recommend booking during your second 
+                        trimester for newborn sessions.
+                    </p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">03</div>
+                    <h3 class="step-title">Your Session Day</h3>
+                    <p class="step-description">
+                        Arrive at our warm, comfortable studio. We take care of everything — feeding breaks, 
+                        soothing, props, and posing — at a gentle pace.
+                    </p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">04</div>
+                    <h3 class="step-title">Receive Your Gallery</h3>
+                    <p class="step-description">
+                        Within 3–4 weeks, your private online gallery is delivered. Choose prints, albums, wall art, 
+                        or simply treasure your digital heirlooms.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="testimonials-container">
+            <div class="testimonials-header">
+                <div class="section-header">
+                    <span class="section-eyebrow">Kind Words</span>
+                    <h2 class="section-title">Families who <span class="italic">trust us</span></h2>
+                </div>
+                <a href="#contact" class="btn btn-primary">Book Yours</a>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <span class="testimonial-stars">★★★★★</span>
+                        <span class="testimonial-score">5.0</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "We are absolutely obsessed with our newborn photos. The studio was so warm and the photographer
+                        was so patient with our little one. Every image is magazine-worthy."
+                    </p>
+                    <div class="testimonial-author">
+                        <span class="author-name">Priya & Rahul Sharma</span>
+                        <span class="author-session">Newborn Session</span>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <span class="testimonial-stars">★★★★★</span>
+                        <span class="testimonial-score">4.9</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "I almost didn't do a maternity shoot, but these photos are now my most treasured possessions.
+                        The lighting, the emotion — they captured something I can't put into words."
+                    </p>
+                    <div class="testimonial-author">
+                        <span class="author-name">Ankita Menon</span>
+                        <span class="author-session">Maternity Session</span>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <span class="testimonial-stars">★★★★★</span>
+                        <span class="testimonial-score">5.0</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "The cake smash photos are pure joy. Our daughter had the time of her life and the images
+                        perfectly captured her personality. We laughed the whole session!"
+                    </p>
+                    <div class="testimonial-author">
+                        <span class="author-name">Deepa & Arjun Nair</span>
+                        <span class="author-session">Cake Smash Session</span>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <span class="testimonial-stars">★★★★★</span>
+                        <span class="testimonial-score">4.9</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "From booking to receiving our gallery — the entire experience felt luxurious and thoughtful.
+                        The images are stunning. We've already booked our 6-month session!"
+                    </p>
+                    <div class="testimonial-author">
+                        <span class="author-name">Sneha & Vikram Iyer</span>
+                        <span class="author-session">Newborn + Milestone Plan</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="reviews" id="reviews">
+        <div class="reviews-container">
+            <div class="section-header center">
+                <span class="section-eyebrow">Client Reviews</span>
+                <h2 class="section-title">Review images from <span class="italic">happy families</span></h2>
+                <p class="section-subtitle">Real, unedited screenshots straight from our Google reviews.</p>
+                <div class="reviews-rating">
+                    <span class="reviews-rating-stars">★★★★★</span>
+                    <span class="reviews-rating-text">150+ five-star reviews on Google</span>
+                </div>
+            </div>
+
+            <div class="reviews-grid">
+                <div class="review-card reveal-delay-1">
+                    <span class="review-quote-mark">&ldquo;</span>
+                    <div class="review-image gc-9">
+                        <img src="assets/images/reviews/WhatsApp Image 2026-06-16 at 1.50.15 pm (1).jpeg" alt="Client review 1" loading="lazy">
+                    </div>
+                    <span class="review-google-tag">
+                        <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="currentColor" d="M12 10.8v3.6h5.05c-.22 1.26-1.6 3.7-5.05 3.7-3.04 0-5.52-2.52-5.52-5.6s2.48-5.6 5.52-5.6c1.73 0 2.89.74 3.55 1.37l2.42-2.33C16.53 4.5 14.47 3.6 12 3.6 6.98 3.6 2.9 7.58 2.9 12.5s4.08 8.9 9.1 8.9c5.25 0 8.74-3.69 8.74-8.89 0-.6-.07-1.06-.15-1.51H12z"/></svg>
+                        Google Review
+                    </span>
+                </div>
+                <div class="review-card reveal-delay-2">
+                    <span class="review-quote-mark">&ldquo;</span>
+                    <div class="review-image gc-10">
+                        <img src="assets/images/reviews/WhatsApp Image 2026-06-16 at 1.50.16 pm (1).jpeg" alt="Client review 2" loading="lazy">
+                    </div>
+                    <span class="review-google-tag">
+                        <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="currentColor" d="M12 10.8v3.6h5.05c-.22 1.26-1.6 3.7-5.05 3.7-3.04 0-5.52-2.52-5.52-5.6s2.48-5.6 5.52-5.6c1.73 0 2.89.74 3.55 1.37l2.42-2.33C16.53 4.5 14.47 3.6 12 3.6 6.98 3.6 2.9 7.58 2.9 12.5s4.08 8.9 9.1 8.9c5.25 0 8.74-3.69 8.74-8.89 0-.6-.07-1.06-.15-1.51H12z"/></svg>
+                        Google Review
+                    </span>
+                </div>
+                <div class="review-card reveal-delay-3">
+                    <span class="review-quote-mark">&ldquo;</span>
+                    <div class="review-image gc-11">
+                        <img src="assets/images/reviews/WhatsApp Image 2026-06-16 at 1.50.17 pm (1).jpeg" alt="Client review 3" loading="lazy">
+                    </div>
+                    <span class="review-google-tag">
+                        <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="currentColor" d="M12 10.8v3.6h5.05c-.22 1.26-1.6 3.7-5.05 3.7-3.04 0-5.52-2.52-5.52-5.6s2.48-5.6 5.52-5.6c1.73 0 2.89.74 3.55 1.37l2.42-2.33C16.53 4.5 14.47 3.6 12 3.6 6.98 3.6 2.9 7.58 2.9 12.5s4.08 8.9 9.1 8.9c5.25 0 8.74-3.69 8.74-8.89 0-.6-.07-1.06-.15-1.51H12z"/></svg>
+                        Google Review
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Packages Section -->
+    <section class="packages" id="packages">
+        <div class="packages-container">
+            <div class="section-header center">
+                <span class="section-eyebrow">Investment</span>
+                <h2 class="section-title">Sessions to <span class="italic">suit every family</span></h2>
+                <p class="section-subtitle">All packages include a consultation, studio session, and your private online gallery.</p>
+            </div>
+            
+            <div class="packages-grid">
+                <div class="package-card">
+                    <div class="package-badge">Package 1 · Essentials</div>
+                    <h3 class="package-name">Bloom</h3>
+                    <p class="package-description">Perfect for milestone sessions</p>
+
+                    <div class="package-divider"></div>
+
+                    <ul class="package-features">
+                        <li>2-hour studio session</li>
+                        <li>Up to 3 setups / looks</li>
+                        <li>25 hand-edited images</li>
+                        <li>Private online gallery</li>
+                        <li>Digital download</li>
+                    </ul>
+
+                    <a href="#contact" class="package-price-pill">₹18,000</a>
+                </div>
+
+                <div class="package-card featured">
+                    <div class="package-badge">Package 2 · Most Popular</div>
+                    <h3 class="package-name">Heirloom</h3>
+                    <p class="package-description">Our signature newborn experience</p>
+
+                    <div class="package-divider"></div>
+
+                    <ul class="package-features">
+                        <li>4–5 hour relaxed session</li>
+                        <li>Unlimited setups & wraps</li>
+                        <li>60+ hand-edited images</li>
+                        <li>Family & sibling portraits</li>
+                        <li>Private gallery + digital files</li>
+                        <li>One 10×8 fine art print</li>
+                    </ul>
+
+                    <a href="#contact" class="package-price-pill">₹32,000</a>
+                </div>
+
+                <div class="package-card">
+                    <div class="package-badge">Package 3 · Complete Journey</div>
+                    <h3 class="package-name">Legacy</h3>
+                    <p class="package-description">Maternity + Newborn + 1 Year Plan</p>
+
+                    <div class="package-divider"></div>
+
+                    <ul class="package-features">
+                        <li>Maternity session (32–36 wks)</li>
+                        <li>Full newborn session</li>
+                        <li>3 milestone sessions</li>
+                        <li>Cake smash at 1 year</li>
+                        <li>150+ edited images total</li>
+                        <li>Luxury printed album</li>
+                    </ul>
+
+                    <a href="#contact" class="package-price-pill">₹75,000</a>
+                </div>
+            </div>
+            
+            <p class="packages-note">Custom packages available — contact us to design your perfect session.</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="section-header">
+                    <span class="section-eyebrow">Get In Touch</span>
+                    <h2 class="section-title">Let's create <span class="italic">something beautiful</span></h2>
+                </div>
+                
+                <p class="contact-description">
+                    We'd love to meet you and your family. Reach out to check availability, ask questions, 
+                    or simply say hello.
+                </p>
+                
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div class="contact-text">
+                            <span class="contact-label">Studio Location</span>
+                            <span class="contact-value">
+                                <a href="https://maps.app.goo.gl/qxZbW1WZf9jbraF57?g_st=iw" target="_blank" rel="noreferrer">
+                                    Nishigandha Banglow, Near Mumbai Naka Circle, Bhabha Nagar, Nashik, Maharashtra 422011
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <div class="contact-text">
+                            <span class="contact-label">Call / WhatsApp</span>
+                            <span class="contact-value">+91 89750 35649 (Pranjal Kothawade)</span>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">✉️</div>
+                        <div class="contact-text">
+                            <span class="contact-label">Email</span>
+                            <span class="contact-value">thebabystudio.nashik@gmail.com</span>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">🕐</div>
+                        <div class="contact-text">
+                            <span class="contact-label">Working Hours</span>
+                            <span class="contact-value">10am – 8.30pm</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contact-form-wrapper">
+                <div class="section-header">
+                    <span class="section-eyebrow">Booking Enquiry</span>
+                    <h3 class="section-title">Reserve Your Date</h3>
+                    <p class="section-subtitle">We typically respond within 24 hours.</p>
+                </div>
+                
+                <form class="contact-form" onsubmit="return false;">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="parentName">Parent Name</label>
+                            <input type="text" id="parentName" placeholder="Priya Sharma" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="mobileNumber">Mobile Number</label>
+                            <input type="tel" id="mobileNumber" placeholder="+91 89750 35649" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" placeholder="you@example.com" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="babyName">Baby Name</label>
+                            <input type="text" id="babyName" placeholder="Aarav">
+                        </div>
+                        <div class="form-group">
+                            <label for="babyAge">Baby Age</label>
+                            <input type="text" id="babyAge" placeholder="3 months">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="sessionType">Photoshoot Type</label>
+                            <select id="sessionType" required>
+                                <option value="">Select session</option>
+                                <option value="newborn">Newborn Photoshoot</option>
+                                <option value="maternity">Maternity Photoshoot</option>
+                                <option value="cake-smash">Cake Smash / Birthday</option>
+                                <option value="baby">Baby Photoshoot</option>
+                                <option value="family">Family Photoshoot</option>
+                                <option value="outdoor">Outdoor Photoshoot</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="sessionDate">Preferred Date</label>
+                            <input type="date" id="sessionDate">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Additional Message</label>
+                        <textarea id="message" placeholder="Share any details that will help us plan your perfect session…" rows="4"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Send Enquiry</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <img src="assets/logo/ThebabyStudio-logo (1).png" alt="The Baby Studio Logo" class="logo-icon" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="logo-icon fallback">B</div>
+                        <div class="logo-text">
+                            <span class="logo-main">The Baby Studio</span>
+                            <span class="logo-sub">Photography & Film</span>
+                        </div>
+                    </div>
+                    
+                    <p class="footer-tagline">
+                        Creating timeless heirloom images of your most precious moments — with artistry, care, and love.
+                    </p>
+                    
+                    <div class="footer-social">
+                        <a href="#" class="social-link" aria-label="Instagram">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Facebook">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Pinterest">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0c-6.627 0-12 5.372-12 12 0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738.098.119.112.224.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.631-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146 1.124.347 2.317.535 3.554.535 6.627 0 12-5.373 12-12 0-6.628-5.373-12-12-12z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="WhatsApp">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-links-group">
+                    <div class="footer-column">
+                        <h4 class="footer-column-title">Sessions</h4>
+                        <ul class="footer-links">
+                            <li><a href="#">Newborn Photography</a></li>
+                            <li><a href="#">Maternity Sessions</a></li>
+                            <li><a href="#">Baby Milestones</a></li>
+                            <li><a href="#">Cake Smash</a></li>
+                            <li><a href="#">Family Portraits</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4 class="footer-column-title">Studio</h4>
+                        <ul class="footer-links">
+                            <li><a href="#about">About Us</a></li>
+                            <li><a href="#portfolio">Portfolio</a></li>
+                            <li><a href="#packages">Packages</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Gift Cards</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4 class="footer-column-title">Contact</h4>
+                        <ul class="footer-links">
+                            <li><a href="#contact">Book a Session</a></li>
+                            <li><a href="#">WhatsApp Us</a></li>
+                            <li><a href="#">FAQ</a></li>
+                            <li><a href="#">Instagram</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <span>© 2025 The Baby Studio. All rights reserved.</span>
+                <span>Made with ♥ for families everywhere — <a href="#">Privacy Policy</a></span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating CTA -->
+    <a href="#contact" class="floating-cta">Book Now</a>
+    
+    <!-- WhatsApp CTA -->
+    <a href="https://wa.me/918975035649?text=Hi!%20I'm%20interested%20in%20booking%20a%20photoshoot.%20Please%20share%20your%20packages." target="_blank" class="whatsapp-cta" aria-label="Chat on WhatsApp">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+    </a>
+
+    <script src="script.js"></script>
+</body>
+</html>
