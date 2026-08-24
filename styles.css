@@ -262,12 +262,12 @@ h1, h2, h3, h4, h5, h6 {
     right: 0;
     z-index: 1000;
     padding: 24px 60px;
+    background: rgba(250, 247, 242, 0.95);
+    backdrop-filter: blur(20px);
     transition: all 0.5s var(--transition-smooth);
 }
 
 .nav.scrolled {
-    background: rgba(250, 247, 242, 0.95);
-    backdrop-filter: blur(20px);
     padding: 16px 60px;
     box-shadow: 0 2px 30px var(--shadow);
 }
