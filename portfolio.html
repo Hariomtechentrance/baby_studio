@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | The Baby Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-follower" id="cursorFollower"></div>
+
+    <nav class="nav" id="nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <img src="assets/logo/ThebabyStudio-logo (1).png" alt="The Baby Studio Logo" class="logo-icon" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="logo-icon fallback">B</div>
+                <div class="logo-text">
+                    <span class="logo-main">The Baby Studio</span>
+                    <span class="logo-sub">Photography & Film</span>
+                </div>
+            </a>
+
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html#about" class="nav-link">About</a>
+                <a href="index.html#services" class="nav-link">Services</a>
+                <a href="index.html#portfolio" class="nav-link">Portfolio</a>
+                <a href="gallery.html" class="nav-link">Gallery</a>
+                <a href="index.html#reviews" class="nav-link">Reviews</a>
+                <a href="index.html#packages" class="nav-link">Packages</a>
+                <a href="index.html#contact" class="nav-link">Contact</a>
+            </div>
+
+            <a href="index.html#contact" class="nav-cta">Book a Session</a>
+
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <main>
+        <section class="portfolio" id="portfolio">
+            <div class="portfolio-container">
+                <div class="section-header center">
+                    <span class="section-eyebrow">Portfolio</span>
+                    <h1 class="section-title" id="portfolioHeading">Portfolio</h1>
+                    <p class="portfolio-intro" id="portfolioSubtext">Explore our sessions and gallery.</p>
+                </div>
+
+                <div class="portfolio-gallery" id="portfolioGallery"></div>
+
+                <div class="portfolio-cta">
+                    <a href="index.html#portfolio" class="btn btn-secondary">Back to Portfolio</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const categories = {
+            maternity: {
+                title: 'Maternity',
+                subtitle: '7 months to 9 months of Pregnancy',
+                description: 'Soft, elegant maternity sessions that celebrate the glow of pregnancy.',
+                images: [
+                    'assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_0593.jpg',
+                    'assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_1321.jpg',
+                    'assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_4720.jpg',
+                    'assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_5476.jpg'
+                ]
+            },
+            newborn: {
+                title: 'Newborn',
+                subtitle: '5 days to 1 month old Baby',
+                description: 'First-week newborn sessions with calm poses and tiny details.',
+                images: [
+                    'assets/images/gallery/drive-download-20260621T123026Z-3-001/Collage B2.jpg',
+                    'assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_0862.jpg',
+                    'assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_3366.jpg',
+                    'assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_4783.jpg'
+                ]
+            },
+            infant: {
+                title: 'Infant',
+                subtitle: '2–7 months old Baby',
+                description: 'Tender infant sessions capturing smiles, milestones, and gentle growth.',
+                images: [
+                    'assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_0862.jpg',
+                    'assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_4416.jpg',
+                    'assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_5643.jpg'
+                ]
+            },
+            sitter: {
+                title: 'Sitter',
+                subtitle: '8–15 months old Baby',
+                description: 'Sitter sessions for curious babies learning to sit and explore.',
+                images: [
+                    'assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_1941.jpg',
+                    'assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_8915.jpg',
+                    'assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_9099.jpg'
+                ]
+            },
+            'pre-birthday': {
+                title: 'Pre Birthday',
+                subtitle: '10–14 months old Baby',
+                description: 'Cake smash and birthday sessions full of joy and color.',
+                images: [
+                    'assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_2059.jpg',
+                    'assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_5463.jpg',
+                    'assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_9913.jpg'
+                ]
+            },
+            toddler: {
+                title: 'Toddler',
+                subtitle: '14 months & Above',
+                description: 'Free-spirited toddler sessions for growing personalities.',
+                images: [
+                    'assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_2974.jpg',
+                    'assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_3381.jpg',
+                    'assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_8220.jpg'
+                ]
+            },
+            lifestyle: {
+                title: 'Lifestyle',
+                subtitle: 'For All',
+                description: 'Everyday family stories captured in natural, relaxed moments.',
+                images: [
+                    'assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_1321.jpg',
+                    'assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_4828.jpg',
+                    'assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_4847.jpg'
+                ]
+            },
+            family: {
+                title: 'Family',
+                subtitle: 'For All',
+                description: 'Family portraits that celebrate togetherness and connection.',
+                images: [
+                    'assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_3317.jpg',
+                    'assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_4985.jpg',
+                    'assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_9208.jpg'
+                ]
+            }
+        };
+
+        function getQueryParam(name) {
+            const params = new URLSearchParams(window.location.search);
+            return params.get(name);
+        }
+
+        function renderGallery(categoryKey) {
+            const category = categories[categoryKey];
+            const heading = document.getElementById('portfolioHeading');
+            const subtext = document.getElementById('portfolioSubtext');
+            const gallery = document.getElementById('portfolioGallery');
+
+            if (!category) {
+                heading.textContent = 'Portfolio';
+                subtext.textContent = 'Select a category from the homepage to view that gallery.';
+                gallery.innerHTML = '<p class="portfolio-empty">Category not found. Please return to the homepage and choose another.</p>';
+                return;
+            }
+
+            heading.textContent = category.title;
+            subtext.textContent = category.subtitle;
+            gallery.innerHTML = '';
+
+            const description = document.createElement('p');
+            description.className = 'portfolio-description';
+            description.textContent = category.description;
+            gallery.appendChild(description);
+
+            const grid = document.createElement('div');
+            grid.className = 'portfolio-detail-grid';
+
+            category.images.forEach(src => {
+                const item = document.createElement('div');
+                item.className = 'portfolio-detail-item';
+                item.innerHTML = `
+                    <div class="portfolio-detail-image">
+                        <img src="${src}" alt="${category.title} gallery image">
+                    </div>
+                `;
+                grid.appendChild(item);
+            });
+
+            gallery.appendChild(grid);
+        }
+
+        renderGallery(getQueryParam('category'));
+    </script>
+</body>
+</html>

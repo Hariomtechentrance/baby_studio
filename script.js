@@ -150,10 +150,11 @@ revealElements.forEach(el => revealObserver.observe(el));
 
 // ===== Portfolio Filter =====
 const filterBtns = document.querySelectorAll('.filter-btn');
-const portfolioItems = document.querySelectorAll('.portfolio-item');
+let portfolioItems = document.querySelectorAll('.portfolio-item');
 
 filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
+        portfolioItems = document.querySelectorAll('.portfolio-item');
         // Update active state
         filterBtns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
@@ -164,7 +165,7 @@ filterBtns.forEach(btn => {
             const category = item.dataset.category;
             
             if (filter === 'all' || category === filter) {
-                item.style.display = 'block';
+                item.style.display = 'grid';
                 setTimeout(() => {
                     item.style.opacity = '1';
                     item.style.transform = 'scale(1)';
@@ -222,24 +223,17 @@ if (contactForm) {
         });
         
         if (isValid) {
-            // Simulate form submission
             const submitBtn = contactForm.querySelector('button[type="submit"]');
             const originalText = submitBtn.textContent;
             
             submitBtn.textContent = 'Sending...';
             submitBtn.disabled = true;
             
-            setTimeout(() => {
-                submitBtn.textContent = 'Message Sent!';
-                submitBtn.style.background = '#27ae60';
-                
-                setTimeout(() => {
-                    submitBtn.textContent = originalText;
-                    submitBtn.style.background = '';
-                    submitBtn.disabled = false;
-                    contactForm.reset();
-                }, 2000);
-            }, 1500);
+            fetch('/api/inquiries', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
+                .then(response => response.ok ? response.json() : response.json().then(error => Promise.reject(error)))
+                .then(() => { submitBtn.textContent = 'Message Sent!'; submitBtn.style.background = '#27ae60'; contactForm.reset(); })
+                .catch(error => { submitBtn.textContent = error.error || 'Could not send — try again'; submitBtn.style.background = '#c0392b'; })
+                .finally(() => setTimeout(() => { submitBtn.textContent = originalText; submitBtn.style.background = ''; submitBtn.disabled = false; }, 2500));
         }
     });
 }

@@ -30,6 +30,7 @@
                 <a href="#about" class="nav-link">About</a>
                 <a href="#services" class="nav-link">Services</a>
                 <a href="#portfolio" class="nav-link">Portfolio</a>
+                <a href="gallery.html" class="nav-link">Gallery</a>
                 <a href="#reviews" class="nav-link">Reviews</a>
                 <a href="#packages" class="nav-link">Packages</a>
                 <a href="#contact" class="nav-link">Contact</a>
@@ -315,105 +316,101 @@
     <!-- Portfolio Section -->
     <section class="portfolio" id="portfolio">
         <div class="portfolio-container">
-            <div class="portfolio-header">
+            <div class="portfolio-header portfolio-header-compact">
                 <div class="section-header">
-                    <span class="section-eyebrow">Portfolio</span>
-                    <h2 class="section-title">A glimpse into <span class="italic">our world</span></h2>
+                    <span class="section-eyebrow">Explore our portfolios</span>
+                    <h2 class="section-title">Every little chapter, <span class="italic">beautifully held</span></h2>
+                    <p class="portfolio-intro">Choose a session below to explore the moments we love to preserve—from the waiting days to the wonderfully wild toddler years.</p>
                 </div>
-                
-                <div class="portfolio-filters">
-                    <button class="filter-btn active" data-filter="all">All</button>
-                    <button class="filter-btn" data-filter="newborn">Newborn</button>
-                    <button class="filter-btn" data-filter="maternity">Maternity</button>
-                    <button class="filter-btn" data-filter="family">Family</button>
-                </div>
+                <p class="portfolio-note">CLICK on the image to view portfolio</p>
             </div>
             
-            <div class="portfolio-grid">
-                <div class="portfolio-item" data-category="newborn">
-                    <div class="portfolio-image gc-1">
-                        <img src="assets/images/gallery/drive-download-20260621T123026Z-3-001/Collage B2.jpg" alt="Collage" />
-                        <span class="portfolio-label">Newborn</span>
-                    </div>
-                    <div class="portfolio-overlay">
-                        <h3 class="portfolio-title">Serene & Wrapped</h3>
-                    </div>
-                </div>
-                
-                <div class="portfolio-item" data-category="maternity">
-                    <div class="portfolio-image gc-2">
+            <div class="portfolio-grid" id="portfolioGrid">
+                <a class="portfolio-item" data-category="maternity" href="portfolio.html?category=maternity">
+                    <div class="portfolio-image round gc-2">
                         <img src="assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_0593.jpg" alt="Maternity" />
-                        <span class="portfolio-label">Maternity</span>
                     </div>
-                    <div class="portfolio-overlay">
-                        <h3 class="portfolio-title">Golden Hour</h3>
+                    <div class="portfolio-info">
+                        <h3 class="portfolio-title">Maternity</h3>
+                        <p class="portfolio-age">7 months to 9 months of Pregnancy</p>
                     </div>
-                </div>
-                
-                <div class="portfolio-item" data-category="newborn">
-                    <div class="portfolio-image gc-3">
-                        <img src="assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_0862.jpg" alt="Baby" />
-                        <span class="portfolio-label">Baby</span>
+                </a>
+
+                <a class="portfolio-item" data-category="newborn" href="portfolio.html?category=newborn">
+                    <div class="portfolio-image round gc-1">
+                        <img src="assets/images/gallery/drive-download-20260621T123026Z-3-001/Collage B2.jpg" alt="Newborn" />
                     </div>
-                    <div class="portfolio-overlay">
-                        <h3 class="portfolio-title">First Smile</h3>
+                    <div class="portfolio-info">
+                        <h3 class="portfolio-title">Newborn</h3>
+                        <p class="portfolio-age">5 days to 1 month old Baby</p>
                     </div>
-                </div>
-                
-                <div class="portfolio-item" data-category="family">
-                    <div class="portfolio-image gc-4">
-                        <img src="assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_1321.jpg" alt="Family" />
-                        <span class="portfolio-label">Family</span>
+                </a>
+
+                <a class="portfolio-item" data-category="infant" href="portfolio.html?category=infant">
+                    <div class="portfolio-image round gc-3">
+                        <img src="assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_0862.jpg" alt="Infant" />
                     </div>
-                    <div class="portfolio-overlay">
-                        <h3 class="portfolio-title">Pure Connection</h3>
+                    <div class="portfolio-info">
+                        <h3 class="portfolio-title">Infant</h3>
+                        <p class="portfolio-age">2–7 months old Baby</p>
                     </div>
-                </div>
-                
-                <div class="portfolio-item" data-category="newborn">
-                    <div class="portfolio-image gc-5">
-                        <img src="assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_1941.jpg" alt="Newborn" />
-                        <span class="portfolio-label">Newborn</span>
+                </a>
+
+                <a class="portfolio-item" data-category="sitter" href="portfolio.html?category=sitter">
+                    <div class="portfolio-image round gc-5">
+                        <img src="assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_1941.jpg" alt="Sitter" />
                     </div>
-                    <div class="portfolio-overlay">
-                        <h3 class="portfolio-title">Gentle Dreams</h3>
+                    <div class="portfolio-info">
+                        <h3 class="portfolio-title">Sitter</h3>
+                        <p class="portfolio-age">8–15 months old Baby</p>
                     </div>
-                </div>
-                
-                <div class="portfolio-item" data-category="newborn">
-                    <div class="portfolio-image gc-6">
-                        <img src="assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_2059.jpg" alt="Cake Smash" />
-                        <span class="portfolio-label">Cake Smash</span>
+                </a>
+
+                <a class="portfolio-item" data-category="pre-birthday" href="portfolio.html?category=pre-birthday">
+                    <div class="portfolio-image round gc-6">
+                        <img src="assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_2059.jpg" alt="Pre Birthday" />
                     </div>
-                    <div class="portfolio-overlay">
-                        <h3 class="portfolio-title">Sweet One</h3>
+                    <div class="portfolio-info">
+                        <h3 class="portfolio-title">Pre Birthday</h3>
+                        <p class="portfolio-age">10–14 months old Baby</p>
                     </div>
-                </div>
-                
-                <div class="portfolio-item" data-category="maternity">
-                    <div class="portfolio-image gc-7">
-                        <img src="assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_2974.jpg" alt="Maternity" />
-                        <span class="portfolio-label">Maternity</span>
+                </a>
+
+                <a class="portfolio-item" data-category="toddler" href="portfolio.html?category=toddler">
+                    <div class="portfolio-image round gc-7">
+                        <img src="assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_2974.jpg" alt="Toddler" />
                     </div>
-                    <div class="portfolio-overlay">
-                        <h3 class="portfolio-title">The Journey</h3>
+                    <div class="portfolio-info">
+                        <h3 class="portfolio-title">Toddler</h3>
+                        <p class="portfolio-age">14 months & Above</p>
                     </div>
-                </div>
-                
-                <div class="portfolio-item" data-category="family">
-                    <div class="portfolio-image gc-8">
+                </a>
+
+                <a class="portfolio-item" data-category="lifestyle" href="portfolio.html?category=lifestyle">
+                    <div class="portfolio-image round gc-4">
+                        <img src="assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_1321.jpg" alt="Lifestyle" />
+                    </div>
+                    <div class="portfolio-info">
+                        <h3 class="portfolio-title">Lifestyle</h3>
+                        <p class="portfolio-age">For All</p>
+                    </div>
+                </a>
+
+                <a class="portfolio-item" data-category="family" href="portfolio.html?category=family">
+                    <div class="portfolio-image round gc-8">
                         <img src="assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_3317.jpg" alt="Family" />
-                        <span class="portfolio-label">Family</span>
                     </div>
-                    <div class="portfolio-overlay">
-                        <h3 class="portfolio-title">Forever Yours</h3>
+                    <div class="portfolio-info">
+                        <h3 class="portfolio-title">Family</h3>
+                        <p class="portfolio-age">For All</p>
                     </div>
-                </div>
+                </a>
             </div>
             
             <div class="portfolio-cta">
                 <a href="#contact" class="btn btn-primary">Book a Session</a>
             </div>
+
         </div>
     </section>
 
@@ -556,31 +553,391 @@
             <div class="reviews-grid">
                 <div class="review-card reveal-delay-1">
                     <span class="review-quote-mark">&ldquo;</span>
-                    <div class="review-image gc-9">
-                        <img src="assets/images/reviews/WhatsApp Image 2026-06-16 at 1.50.15 pm (1).jpeg" alt="Client review 1" loading="lazy">
+                    <div class="review-image">
+                        <img src="assets/images/reviews/WhatsApp Image 2026-06-16 at 1.50.15 pm (1).jpeg" alt="Google review screenshot 1" loading="lazy">
                     </div>
                     <span class="review-google-tag">
-                        <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="currentColor" d="M12 10.8v3.6h5.05c-.22 1.26-1.6 3.7-5.05 3.7-3.04 0-5.52-2.52-5.52-5.6s2.48-5.6 5.52-5.6c1.73 0 2.89.74 3.55 1.37l2.42-2.33C16.53 4.5 14.47 3.6 12 3.6 6.98 3.6 2.9 7.58 2.9 12.5s4.08 8.9 9.1 8.9c5.25 0 8.74-3.69 8.74-8.89 0-.6-.07-1.06-.15-1.51H12z"/></svg>
+                        <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="currentColor" d="M12 10.8v3.6h5.05c-.22 1.26-1.6 3.7-5.05 3.7-3.04 0-5.52-2.52-5.52-5.6s2.48 5.6 5.52 5.6c1.73 0 2.89.74 3.55 1.37l2.42-2.33C16.53 4.5 14.47 3.6 12 3.6 6.98 3.6 2.9 7.58 2.9 12.5s4.08 8.9 9.1 8.9c5.25 0 8.74-3.69 8.74-8.89 0-.6-.07-1.06-.15-1.51H12z"/></svg>
                         Google Review
                     </span>
                 </div>
                 <div class="review-card reveal-delay-2">
                     <span class="review-quote-mark">&ldquo;</span>
-                    <div class="review-image gc-10">
-                        <img src="assets/images/reviews/WhatsApp Image 2026-06-16 at 1.50.16 pm (1).jpeg" alt="Client review 2" loading="lazy">
+                    <div class="review-image">
+                        <img src="assets/images/reviews/WhatsApp Image 2026-06-16 at 1.50.15 pm (2).jpeg" alt="Google review screenshot 2" loading="lazy">
                     </div>
                     <span class="review-google-tag">
-                        <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="currentColor" d="M12 10.8v3.6h5.05c-.22 1.26-1.6 3.7-5.05 3.7-3.04 0-5.52-2.52-5.52-5.6s2.48-5.6 5.52-5.6c1.73 0 2.89.74 3.55 1.37l2.42-2.33C16.53 4.5 14.47 3.6 12 3.6 6.98 3.6 2.9 7.58 2.9 12.5s4.08 8.9 9.1 8.9c5.25 0 8.74-3.69 8.74-8.89 0-.6-.07-1.06-.15-1.51H12z"/></svg>
+                        <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="currentColor" d="M12 10.8v3.6h5.05c-.22 1.26-1.6 3.7-5.05 3.7-3.04 0-5.52-2.52-5.52-5.6s2.48 5.6 5.52 5.6c1.73 0 2.89.74 3.55 1.37l2.42-2.33C16.53 4.5 14.47 3.6 12 3.6 6.98 3.6 2.9 7.58 2.9 12.5s4.08 8.9 9.1 8.9c5.25 0 8.74-3.69 8.74-8.89 0-.6-.07-1.06-.15-1.51H12z"/></svg>
                         Google Review
                     </span>
                 </div>
                 <div class="review-card reveal-delay-3">
                     <span class="review-quote-mark">&ldquo;</span>
-                    <div class="review-image gc-11">
-                        <img src="assets/images/reviews/WhatsApp Image 2026-06-16 at 1.50.17 pm (1).jpeg" alt="Client review 3" loading="lazy">
+                    <div class="review-image">
+                        <img src="assets/images/reviews/WhatsApp Image 2026-06-16 at 1.50.15 pm (3).jpeg" alt="Google review screenshot 3" loading="lazy">
                     </div>
                     <span class="review-google-tag">
-                        <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="currentColor" d="M12 10.8v3.6h5.05c-.22 1.26-1.6 3.7-5.05 3.7-3.04 0-5.52-2.52-5.52-5.6s2.48-5.6 5.52-5.6c1.73 0 2.89.74 3.55 1.37l2.42-2.33C16.53 4.5 14.47 3.6 12 3.6 6.98 3.6 2.9 7.58 2.9 12.5s4.08 8.9 9.1 8.9c5.25 0 8.74-3.69 8.74-8.89 0-.6-.07-1.06-.15-1.51H12z"/></svg>
+                        <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="currentColor" d="M12 10.8v3.6h5.05c-.22 1.26-1.6 3.7-5.05 3.7-3.04 0-5.52-2.52-5.52-5.6s2.48 5.6 5.52 5.6c1.73 0 2.89.74 3.55 1.37l2.42-2.33C16.53 4.5 14.47 3.6 12 3.6 6.98 3.6 2.9 7.58 2.9 12.5s4.08 8.9 9.1 8.9c5.25 0 8.74-3.69 8.74-8.89 0-.6-.07-1.06-.15-1.51H12z"/></svg>
+                        Google Review
+                    </span>
+                </div>
+                <div class="review-card reveal-delay-1">
+                    <span class="review-quote-mark">&ldquo;</span>
+                    <div class="review-image">
+                        <img src="assets/images/reviews/WhatsApp Image 2026-06-16 at 1.50.15 pm.jpeg" alt="Google review screenshot 4" loading="lazy">
+                    </div>
+                    <span class="review-google-tag">
+                        <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="currentColor" d="M12 10.8v3.6h5.05c-.22 1.26-1.6 3.7-5.05 3.7-3.04 0-5.52-2.52-5.52-5.6s2.48 5.6 5.52 5.6c1.73 0 2.89.74 3.55 1.37l2.42-2.33C16.53 4.5 14.47 3.6 12 3.6 6.98 3.6 2.9 7.58 2.9 12.5s4.08 8.9 9.1 8.9c5.25 0 8.74-3.69 8.74-8.89 0-.6-.07-1.06-.15-1.51H12z"/></svg>
+                        Google Review
+                    </span>
+                </div>
+                <div class="review-card reveal-delay-2">
+                    <span class="review-quote-mark">&ldquo;</span>
+                    <div class="review-image">
+                        <img src="assets/images/reviews/WhatsApp Image 2026-06-16 at 1.50.16 pm (1).jpeg" alt="Google review screenshot 5" loading="lazy">
+                    </div>
+                    <span class="review-google-tag">
+                        <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="currentColor" d="M12 10.8v3.6h5.05c-.22 1.26-1.6 3.7-5.05 3.7-3.04 0-5.52-2.52-5.52-5.6s2.48 5.6 5.52 5.6c1.73 0 2.89.74 3.55 1.37l2.42-2.33C16.53 4.5 14.47 3.6 12 3.6 6.98 3.6 2.9 7.58 2.9 12.5s4.08 8.9 9.1 8.9c5.25 0 8.74-3.69 8.74-8.89 0-.6-.07-1.06-.15-1.51H12z"/></svg>
+                        Google Review
+                    </span>
+                </div>
+                <div class="review-card reveal-delay-3">
+                    <span class="review-quote-mark">&ldquo;</span>
+                    <div class="review-image">
+                        <img src="assets/images/reviews/WhatsApp Image 2026-06-16 at 1.50.16 pm (2).jpeg" alt="Google review screenshot 6" loading="lazy">
+                    </div>
+                    <span class="review-google-tag">
+                        <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="currentColor" d="M12 10.8v3.6h5.05c-.22 1.26-1.6 3.7-5.05 3.7-3.04 0-5.52-2.52-5.52-5.6s2.48 5.6 5.52 5.6c1.73 0 2.89.74 3.55 1.37l2.42-2.33C16.53 4.5 14.47 3.6 12 3.6 6.98 3.6 2.9 7.58 2.9 12.5s4.08 8.9 9.1 8.9c5.25 0 8.74-3.69 8.74-8.89 0-.6-.07-1.06-.15-1.51H12z"/></svg>
+                        Google Review
+                    </span>
+                </div>
+                <div class="review-card reveal-delay-1">
+                    <span class="review-quote-mark">&ldquo;</span>
+                    <div class="review-image">
+                        <img src="assets/images/reviews/WhatsApp Image 2026-06-16 at 1.50.16 pm (3).jpeg" alt="Google review screenshot 7" loading="lazy">
+                    </div>
+                    <span class="review-google-tag">
+                        <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="currentColor" d="M12 10.8v3.6h5.05c-.22 1.26-1.6 3.7-5.05 3.7-3.04 0-5.52-2.52-5.52-5.6s2.48 5.6 5.52 5.6c1.73 0 2.89.74 3.55 1.37l2.42-2.33C16.53 4.5 14.47 3.6 12 3.6 6.98 3.6 2.9 7.58 2.9 12.5s4.08 8.9 9.1 8.9c5.25 0 8.74-3.69 8.74-8.89 0-.6-.07-1.06-.15-1.51H12z"/></svg>
+                        Google Review
+                    </span>
+                </div>
+                <div class="review-card reveal-delay-2">
+                    <span class="review-quote-mark">&ldquo;</span>
+                    <div class="review-image">
+                        <img src="assets/images/reviews/WhatsApp Image 2026-06-16 at 1.50.16 pm (4).jpeg" alt="Google review screenshot 8" loading="lazy">
+                    </div>
+                    <span class="review-google-tag">
+                        <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="currentColor" d="M12 10.8v3.6h5.05c-.22 1.26-1.6 3.7-5.05 3.7-3.04 0-5.52-2.52-5.52-5.6s2.48 5.6 5.52 5.6c1.73 0 2.89.74 3.55 1.37l2.42-2.33C16.53 4.5 14.47 3.6 12 3.6 6.98 3.6 2.9 7.58 2.9 12.5s4.08 8.9 9.1 8.9c5.25 0 8.74-3.69 8.74-8.89 0-.6-.07-1.06-.15-1.51H12z"/></svg>
+                        Google Review
+                    </span>
+                </div>
+                <div class="review-card reveal-delay-3">
+                    <span class="review-quote-mark">&ldquo;</span>
+                    <div class="review-image">
+                        <img src="assets/images/reviews/WhatsApp Image 2026-06-16 at 1.50.16 pm.jpeg" alt="Google review screenshot 9" loading="lazy">
+                    </div>
+                    <span class="review-google-tag">
+                        <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="currentColor" d="M12 10.8v3.6h5.05c-.22 1.26-1.6 3.7-5.05 3.7-3.04 0-5.52-2.52-5.52-5.6s2.48 5.6 5.52 5.6c1.73 0 2.89.74 3.55 1.37l2.42-2.33C16.53 4.5 14.47 3.6 12 3.6 6.98 3.6 2.9 7.58 2.9 12.5s4.08 8.9 9.1 8.9c5.25 0 8.74-3.69 8.74-8.89 0-.6-.07-1.06-.15-1.51H12z"/></svg>
+                        Google Review
+                    </span>
+                </div>
+                <div class="review-card reveal-delay-1">
+                    <span class="review-quote-mark">&ldquo;</span>
+                    <div class="review-image">
+                        <img src="assets/images/reviews/WhatsApp Image 2026-06-16 at 1.50.17 pm (1).jpeg" alt="Google review screenshot 10" loading="lazy">
+                    </div>
+                    <span class="review-google-tag">
+                        <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="currentColor" d="M12 10.8v3.6h5.05c-.22 1.26-1.6 3.7-5.05 3.7-3.04 0-5.52-2.52-5.52-5.6s2.48 5.6 5.52 5.6c1.73 0 2.89.74 3.55 1.37l2.42-2.33C16.53 4.5 14.47 3.6 12 3.6 6.98 3.6 2.9 7.58 2.9 12.5s4.08 8.9 9.1 8.9c5.25 0 8.74-3.69 8.74-8.89 0-.6-.07-1.06-.15-1.51H12z"/></svg>
+                        Google Review
+                    </span>
+                </div>
+                <div class="review-card reveal-delay-2">
+                    <span class="review-quote-mark">&ldquo;</span>
+                    <div class="review-image">
+                        <img src="assets/images/reviews/WhatsApp Image 2026-06-16 at 1.50.17 pm.jpeg" alt="Google review screenshot 11" loading="lazy">
+                    </div>
+                    <span class="review-google-tag">
+                        <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="currentColor" d="M12 10.8v3.6h5.05c-.22 1.26-1.6 3.7-5.05 3.7-3.04 0-5.52-2.52-5.52-5.6s2.48 5.6 5.52 5.6c1.73 0 2.89.74 3.55 1.37l2.42-2.33C16.53 4.5 14.47 3.6 12 3.6 6.98 3.6 2.9 7.58 2.9 12.5s4.08 8.9 9.1 8.9c5.25 0 8.74-3.69 8.74-8.89 0-.6-.07-1.06-.15-1.51H12z"/></svg>
+                        Google Review
+                    </span>
+                </div>
+                <div class="review-card reveal-delay-3">
+                    <span class="review-quote-mark">&ldquo;</span>
+                    <div class="review-image">
+                        <img src="assets/images/reviews/WhatsApp Image 2026-06-16 at 1.50.18 pm (1).jpeg" alt="Google review screenshot 12" loading="lazy">
+                    </div>
+                    <span class="review-google-tag">
+                        <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="currentColor" d="M12 10.8v3.6h5.05c-.22 1.26-1.6 3.7-5.05 3.7-3.04 0-5.52-2.52-5.52-5.6s2.48 5.6 5.52 5.6c1.73 0 2.89.74 3.55 1.37l2.42-2.33C16.53 4.5 14.47 3.6 12 3.6 6.98 3.6 2.9 7.58 2.9 12.5s4.08 8.9 9.1 8.9c5.25 0 8.74-3.69 8.74-8.89 0-.6-.07-1.06-.15-1.51H12z"/></svg>
+                        Google Review
+                    </span>
+                </div>
+                <div class="review-card reveal-delay-1">
+                    <span class="review-quote-mark">&ldquo;</span>
+                    <div class="review-image">
+                        <img src="assets/images/reviews/WhatsApp Image 2026-06-16 at 1.50.18 pm (2).jpeg" alt="Google review screenshot 13" loading="lazy">
+                    </div>
+                    <span class="review-google-tag">
+                        <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="currentColor" d="M12 10.8v3.6h5.05c-.22 1.26-1.6 3.7-5.05 3.7-3.04 0-5.52-2.52-5.52-5.6s2.48 5.6 5.52 5.6c1.73 0 2.89.74 3.55 1.37l2.42-2.33C16.53 4.5 14.47 3.6 12 3.6 6.98 3.6 2.9 7.58 2.9 12.5s4.08 8.9 9.1 8.9c5.25 0 8.74-3.69 8.74-8.89 0-.6-.07-1.06-.15-1.51H12z"/></svg>
+                        Google Review
+                    </span>
+                </div>
+                <div class="review-card reveal-delay-2">
+                    <span class="review-quote-mark">&ldquo;</span>
+                    <div class="review-image">
+                        <img src="assets/images/reviews/WhatsApp Image 2026-06-16 at 1.50.18 pm.jpeg" alt="Google review screenshot 14" loading="lazy">
+                    </div>
+                    <span class="review-google-tag">
+                        <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="currentColor" d="M12 10.8v3.6h5.05c-.22 1.26-1.6 3.7-5.05 3.7-3.04 0-5.52-2.52-5.52-5.6s2.48 5.6 5.52 5.6c1.73 0 2.89.74 3.55 1.37l2.42-2.33C16.53 4.5 14.47 3.6 12 3.6 6.98 3.6 2.9 7.58 2.9 12.5s4.08 8.9 9.1 8.9c5.25 0 8.74-3.69 8.74-8.89 0-.6-.07-1.06-.15-1.51H12z"/></svg>
+                        Google Review
+                    </span>
+                </div>
+                <div class="review-card reveal-delay-3">
+                    <span class="review-quote-mark">&ldquo;</span>
+                    <div class="review-image">
+                        <img src="assets/images/reviews/WhatsApp Image 2026-06-16 at 1.50.19 pm (1).jpeg" alt="Google review screenshot 15" loading="lazy">
+                    </div>
+                    <span class="review-google-tag">
+                        <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="currentColor" d="M12 10.8v3.6h5.05c-.22 1.26-1.6 3.7-5.05 3.7-3.04 0-5.52-2.52-5.52-5.6s2.48 5.6 5.52 5.6c1.73 0 2.89.74 3.55 1.37l2.42-2.33C16.53 4.5 14.47 3.6 12 3.6 6.98 3.6 2.9 7.58 2.9 12.5s4.08 8.9 9.1 8.9c5.25 0 8.74-3.69 8.74-8.89 0-.6-.07-1.06-.15-1.51H12z"/></svg>
+                        Google Review
+                    </span>
+                </div>
+                <div class="review-card reveal-delay-1">
+                    <span class="review-quote-mark">&ldquo;</span>
+                    <div class="review-image">
+                        <img src="assets/images/reviews/WhatsApp Image 2026-06-16 at 1.50.19 pm (2).jpeg" alt="Google review screenshot 16" loading="lazy">
+                    </div>
+                    <span class="review-google-tag">
+                        <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="currentColor" d="M12 10.8v3.6h5.05c-.22 1.26-1.6 3.7-5.05 3.7-3.04 0-5.52-2.52-5.52-5.6s2.48 5.6 5.52 5.6c1.73 0 2.89.74 3.55 1.37l2.42-2.33C16.53 4.5 14.47 3.6 12 3.6 6.98 3.6 2.9 7.58 2.9 12.5s4.08 8.9 9.1 8.9c5.25 0 8.74-3.69 8.74-8.89 0-.6-.07-1.06-.15-1.51H12z"/></svg>
+                        Google Review
+                    </span>
+                </div>
+                <div class="review-card reveal-delay-2">
+                    <span class="review-quote-mark">&ldquo;</span>
+                    <div class="review-image">
+                        <img src="assets/images/reviews/WhatsApp Image 2026-06-16 at 1.50.19 pm.jpeg" alt="Google review screenshot 17" loading="lazy">
+                    </div>
+                    <span class="review-google-tag">
+                        <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="currentColor" d="M12 10.8v3.6h5.05c-.22 1.26-1.6 3.7-5.05 3.7-3.04 0-5.52-2.52-5.52-5.6s2.48 5.6 5.52 5.6c1.73 0 2.89.74 3.55 1.37l2.42-2.33C16.53 4.5 14.47 3.6 12 3.6 6.98 3.6 2.9 7.58 2.9 12.5s4.08 8.9 9.1 8.9c5.25 0 8.74-3.69 8.74-8.89 0-.6-.07-1.06-.15-1.51H12z"/></svg>
+                        Google Review
+                    </span>
+                </div>
+                <div class="review-card reveal-delay-3">
+                    <span class="review-quote-mark">&ldquo;</span>
+                    <div class="review-image">
+                        <img src="assets/images/reviews/WhatsApp Image 2026-06-16 at 1.56.47 pm.jpeg" alt="Google review screenshot 18" loading="lazy">
+                    </div>
+                    <span class="review-google-tag">
+                        <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="currentColor" d="M12 10.8v3.6h5.05c-.22 1.26-1.6 3.7-5.05 3.7-3.04 0-5.52-2.52-5.52-5.6s2.48 5.6 5.52 5.6c1.73 0 2.89.74 3.55 1.37l2.42-2.33C16.53 4.5 14.47 3.6 12 3.6 6.98 3.6 2.9 7.58 2.9 12.5s4.08 8.9 9.1 8.9c5.25 0 8.74-3.69 8.74-8.89 0-.6-.07-1.06-.15-1.51H12z"/></svg>
+                        Google Review
+                    </span>
+                </div>
+                <div class="review-card reveal-delay-1">
+                    <span class="review-quote-mark">&ldquo;</span>
+                    <div class="review-image">
+                        <img src="assets/images/reviews/WhatsApp Image 2026-06-16 at 1.56.48 pm (1).jpeg" alt="Google review screenshot 19" loading="lazy">
+                    </div>
+                    <span class="review-google-tag">
+                        <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="currentColor" d="M12 10.8v3.6h5.05c-.22 1.26-1.6 3.7-5.05 3.7-3.04 0-5.52-2.52-5.52-5.6s2.48 5.6 5.52 5.6c1.73 0 2.89.74 3.55 1.37l2.42-2.33C16.53 4.5 14.47 3.6 12 3.6 6.98 3.6 2.9 7.58 2.9 12.5s4.08 8.9 9.1 8.9c5.25 0 8.74-3.69 8.74-8.89 0-.6-.07-1.06-.15-1.51H12z"/></svg>
+                        Google Review
+                    </span>
+                </div>
+                <div class="review-card reveal-delay-2">
+                    <span class="review-quote-mark">&ldquo;</span>
+                    <div class="review-image">
+                        <img src="assets/images/reviews/WhatsApp Image 2026-06-16 at 1.56.48 pm (2).jpeg" alt="Google review screenshot 20" loading="lazy">
+                    </div>
+                    <span class="review-google-tag">
+                        <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="currentColor" d="M12 10.8v3.6h5.05c-.22 1.26-1.6 3.7-5.05 3.7-3.04 0-5.52-2.52-5.52-5.6s2.48 5.6 5.52 5.6c1.73 0 2.89.74 3.55 1.37l2.42-2.33C16.53 4.5 14.47 3.6 12 3.6 6.98 3.6 2.9 7.58 2.9 12.5s4.08 8.9 9.1 8.9c5.25 0 8.74-3.69 8.74-8.89 0-.6-.07-1.06-.15-1.51H12z"/></svg>
+                        Google Review
+                    </span>
+                </div>
+                <div class="review-card reveal-delay-3">
+                    <span class="review-quote-mark">&ldquo;</span>
+                    <div class="review-image">
+                        <img src="assets/images/reviews/WhatsApp Image 2026-06-16 at 1.56.48 pm (3).jpeg" alt="Google review screenshot 21" loading="lazy">
+                    </div>
+                    <span class="review-google-tag">
+                        <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="currentColor" d="M12 10.8v3.6h5.05c-.22 1.26-1.6 3.7-5.05 3.7-3.04 0-5.52-2.52-5.52-5.6s2.48 5.6 5.52 5.6c1.73 0 2.89.74 3.55 1.37l2.42-2.33C16.53 4.5 14.47 3.6 12 3.6 6.98 3.6 2.9 7.58 2.9 12.5s4.08 8.9 9.1 8.9c5.25 0 8.74-3.69 8.74-8.89 0-.6-.07-1.06-.15-1.51H12z"/></svg>
+                        Google Review
+                    </span>
+                </div>
+                <div class="review-card reveal-delay-1">
+                    <span class="review-quote-mark">&ldquo;</span>
+                    <div class="review-image">
+                        <img src="assets/images/reviews/WhatsApp Image 2026-06-16 at 1.56.48 pm.jpeg" alt="Google review screenshot 22" loading="lazy">
+                    </div>
+                    <span class="review-google-tag">
+                        <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="currentColor" d="M12 10.8v3.6h5.05c-.22 1.26-1.6 3.7-5.05 3.7-3.04 0-5.52-2.52-5.52-5.6s2.48 5.6 5.52 5.6c1.73 0 2.89.74 3.55 1.37l2.42-2.33C16.53 4.5 14.47 3.6 12 3.6 6.98 3.6 2.9 7.58 2.9 12.5s4.08 8.9 9.1 8.9c5.25 0 8.74-3.69 8.74-8.89 0-.6-.07-1.06-.15-1.51H12z"/></svg>
+                        Google Review
+                    </span>
+                </div>
+                <div class="review-card reveal-delay-2">
+                    <span class="review-quote-mark">&ldquo;</span>
+                    <div class="review-image">
+                        <img src="assets/images/reviews/WhatsApp Image 2026-06-16 at 2.08.07 pm (1).jpeg" alt="Google review screenshot 23" loading="lazy">
+                    </div>
+                    <span class="review-google-tag">
+                        <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="currentColor" d="M12 10.8v3.6h5.05c-.22 1.26-1.6 3.7-5.05 3.7-3.04 0-5.52-2.52-5.52-5.6s2.48 5.6 5.52 5.6c1.73 0 2.89.74 3.55 1.37l2.42-2.33C16.53 4.5 14.47 3.6 12 3.6 6.98 3.6 2.9 7.58 2.9 12.5s4.08 8.9 9.1 8.9c5.25 0 8.74-3.69 8.74-8.89 0-.6-.07-1.06-.15-1.51H12z"/></svg>
+                        Google Review
+                    </span>
+                </div>
+                <div class="review-card reveal-delay-3">
+                    <span class="review-quote-mark">&ldquo;</span>
+                    <div class="review-image">
+                        <img src="assets/images/reviews/WhatsApp Image 2026-06-16 at 2.08.07 pm (2).jpeg" alt="Google review screenshot 24" loading="lazy">
+                    </div>
+                    <span class="review-google-tag">
+                        <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="currentColor" d="M12 10.8v3.6h5.05c-.22 1.26-1.6 3.7-5.05 3.7-3.04 0-5.52-2.52-5.52-5.6s2.48 5.6 5.52 5.6c1.73 0 2.89.74 3.55 1.37l2.42-2.33C16.53 4.5 14.47 3.6 12 3.6 6.98 3.6 2.9 7.58 2.9 12.5s4.08 8.9 9.1 8.9c5.25 0 8.74-3.69 8.74-8.89 0-.6-.07-1.06-.15-1.51H12z"/></svg>
+                        Google Review
+                    </span>
+                </div>
+                <div class="review-card reveal-delay-1">
+                    <span class="review-quote-mark">&ldquo;</span>
+                    <div class="review-image">
+                        <img src="assets/images/reviews/WhatsApp Image 2026-06-16 at 2.08.07 pm (3).jpeg" alt="Google review screenshot 25" loading="lazy">
+                    </div>
+                    <span class="review-google-tag">
+                        <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="currentColor" d="M12 10.8v3.6h5.05c-.22 1.26-1.6 3.7-5.05 3.7-3.04 0-5.52-2.52-5.52-5.6s2.48 5.6 5.52 5.6c1.73 0 2.89.74 3.55 1.37l2.42-2.33C16.53 4.5 14.47 3.6 12 3.6 6.98 3.6 2.9 7.58 2.9 12.5s4.08 8.9 9.1 8.9c5.25 0 8.74-3.69 8.74-8.89 0-.6-.07-1.06-.15-1.51H12z"/></svg>
+                        Google Review
+                    </span>
+                </div>
+                <div class="review-card reveal-delay-2">
+                    <span class="review-quote-mark">&ldquo;</span>
+                    <div class="review-image">
+                        <img src="assets/images/reviews/WhatsApp Image 2026-06-16 at 2.08.07 pm.jpeg" alt="Google review screenshot 26" loading="lazy">
+                    </div>
+                    <span class="review-google-tag">
+                        <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="currentColor" d="M12 10.8v3.6h5.05c-.22 1.26-1.6 3.7-5.05 3.7-3.04 0-5.52-2.52-5.52-5.6s2.48 5.6 5.52 5.6c1.73 0 2.89.74 3.55 1.37l2.42-2.33C16.53 4.5 14.47 3.6 12 3.6 6.98 3.6 2.9 7.58 2.9 12.5s4.08 8.9 9.1 8.9c5.25 0 8.74-3.69 8.74-8.89 0-.6-.07-1.06-.15-1.51H12z"/></svg>
+                        Google Review
+                    </span>
+                </div>
+                <div class="review-card reveal-delay-3">
+                    <span class="review-quote-mark">&ldquo;</span>
+                    <div class="review-image">
+                        <img src="assets/images/reviews/WhatsApp Image 2026-06-16 at 2.08.08 pm (1).jpeg" alt="Google review screenshot 27" loading="lazy">
+                    </div>
+                    <span class="review-google-tag">
+                        <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="currentColor" d="M12 10.8v3.6h5.05c-.22 1.26-1.6 3.7-5.05 3.7-3.04 0-5.52-2.52-5.52-5.6s2.48 5.6 5.52 5.6c1.73 0 2.89.74 3.55 1.37l2.42-2.33C16.53 4.5 14.47 3.6 12 3.6 6.98 3.6 2.9 7.58 2.9 12.5s4.08 8.9 9.1 8.9c5.25 0 8.74-3.69 8.74-8.89 0-.6-.07-1.06-.15-1.51H12z"/></svg>
+                        Google Review
+                    </span>
+                </div>
+                <div class="review-card reveal-delay-1">
+                    <span class="review-quote-mark">&ldquo;</span>
+                    <div class="review-image">
+                        <img src="assets/images/reviews/WhatsApp Image 2026-06-16 at 2.08.08 pm (2).jpeg" alt="Google review screenshot 28" loading="lazy">
+                    </div>
+                    <span class="review-google-tag">
+                        <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="currentColor" d="M12 10.8v3.6h5.05c-.22 1.26-1.6 3.7-5.05 3.7-3.04 0-5.52-2.52-5.52-5.6s2.48 5.6 5.52 5.6c1.73 0 2.89.74 3.55 1.37l2.42-2.33C16.53 4.5 14.47 3.6 12 3.6 6.98 3.6 2.9 7.58 2.9 12.5s4.08 8.9 9.1 8.9c5.25 0 8.74-3.69 8.74-8.89 0-.6-.07-1.06-.15-1.51H12z"/></svg>
+                        Google Review
+                    </span>
+                </div>
+                <div class="review-card reveal-delay-2">
+                    <span class="review-quote-mark">&ldquo;</span>
+                    <div class="review-image">
+                        <img src="assets/images/reviews/WhatsApp Image 2026-06-16 at 2.08.08 pm.jpeg" alt="Google review screenshot 29" loading="lazy">
+                    </div>
+                    <span class="review-google-tag">
+                        <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="currentColor" d="M12 10.8v3.6h5.05c-.22 1.26-1.6 3.7-5.05 3.7-3.04 0-5.52-2.52-5.52-5.6s2.48 5.6 5.52 5.6c1.73 0 2.89.74 3.55 1.37l2.42-2.33C16.53 4.5 14.47 3.6 12 3.6 6.98 3.6 2.9 7.58 2.9 12.5s4.08 8.9 9.1 8.9c5.25 0 8.74-3.69 8.74-8.89 0-.6-.07-1.06-.15-1.51H12z"/></svg>
+                        Google Review
+                    </span>
+                </div>
+                <div class="review-card reveal-delay-3">
+                    <span class="review-quote-mark">&ldquo;</span>
+                    <div class="review-image">
+                        <img src="assets/images/reviews/WhatsApp Image 2026-06-16 at 2.08.09 pm.jpeg" alt="Google review screenshot 30" loading="lazy">
+                    </div>
+                    <span class="review-google-tag">
+                        <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="currentColor" d="M12 10.8v3.6h5.05c-.22 1.26-1.6 3.7-5.05 3.7-3.04 0-5.52-2.52-5.52-5.6s2.48 5.6 5.52 5.6c1.73 0 2.89.74 3.55 1.37l2.42-2.33C16.53 4.5 14.47 3.6 12 3.6 6.98 3.6 2.9 7.58 2.9 12.5s4.08 8.9 9.1 8.9c5.25 0 8.74-3.69 8.74-8.89 0-.6-.07-1.06-.15-1.51H12z"/></svg>
+                        Google Review
+                    </span>
+                </div>
+                <div class="review-card reveal-delay-1">
+                    <span class="review-quote-mark">&ldquo;</span>
+                    <div class="review-image">
+                        <img src="assets/images/reviews/WhatsApp Image 2026-06-16 at 4.29.35 pm (1).jpeg" alt="Google review screenshot 31" loading="lazy">
+                    </div>
+                    <span class="review-google-tag">
+                        <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="currentColor" d="M12 10.8v3.6h5.05c-.22 1.26-1.6 3.7-5.05 3.7-3.04 0-5.52-2.52-5.52-5.6s2.48 5.6 5.52 5.6c1.73 0 2.89.74 3.55 1.37l2.42-2.33C16.53 4.5 14.47 3.6 12 3.6 6.98 3.6 2.9 7.58 2.9 12.5s4.08 8.9 9.1 8.9c5.25 0 8.74-3.69 8.74-8.89 0-.6-.07-1.06-.15-1.51H12z"/></svg>
+                        Google Review
+                    </span>
+                </div>
+                <div class="review-card reveal-delay-2">
+                    <span class="review-quote-mark">&ldquo;</span>
+                    <div class="review-image">
+                        <img src="assets/images/reviews/WhatsApp Image 2026-06-16 at 4.29.35 pm (2).jpeg" alt="Google review screenshot 32" loading="lazy">
+                    </div>
+                    <span class="review-google-tag">
+                        <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="currentColor" d="M12 10.8v3.6h5.05c-.22 1.26-1.6 3.7-5.05 3.7-3.04 0-5.52-2.52-5.52-5.6s2.48 5.6 5.52 5.6c1.73 0 2.89.74 3.55 1.37l2.42-2.33C16.53 4.5 14.47 3.6 12 3.6 6.98 3.6 2.9 7.58 2.9 12.5s4.08 8.9 9.1 8.9c5.25 0 8.74-3.69 8.74-8.89 0-.6-.07-1.06-.15-1.51H12z"/></svg>
+                        Google Review
+                    </span>
+                </div>
+                <div class="review-card reveal-delay-3">
+                    <span class="review-quote-mark">&ldquo;</span>
+                    <div class="review-image">
+                        <img src="assets/images/reviews/WhatsApp Image 2026-06-16 at 4.29.35 pm.jpeg" alt="Google review screenshot 33" loading="lazy">
+                    </div>
+                    <span class="review-google-tag">
+                        <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="currentColor" d="M12 10.8v3.6h5.05c-.22 1.26-1.6 3.7-5.05 3.7-3.04 0-5.52-2.52-5.52-5.6s2.48 5.6 5.52 5.6c1.73 0 2.89.74 3.55 1.37l2.42-2.33C16.53 4.5 14.47 3.6 12 3.6 6.98 3.6 2.9 7.58 2.9 12.5s4.08 8.9 9.1 8.9c5.25 0 8.74-3.69 8.74-8.89 0-.6-.07-1.06-.15-1.51H12z"/></svg>
+                        Google Review
+                    </span>
+                </div>
+                <div class="review-card reveal-delay-1">
+                    <span class="review-quote-mark">&ldquo;</span>
+                    <div class="review-image">
+                        <img src="assets/images/reviews/WhatsApp Image 2026-06-16 at 4.29.36 pm.jpeg" alt="Google review screenshot 34" loading="lazy">
+                    </div>
+                    <span class="review-google-tag">
+                        <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="currentColor" d="M12 10.8v3.6h5.05c-.22 1.26-1.6 3.7-5.05 3.7-3.04 0-5.52-2.52-5.52-5.6s2.48 5.6 5.52 5.6c1.73 0 2.89.74 3.55 1.37l2.42-2.33C16.53 4.5 14.47 3.6 12 3.6 6.98 3.6 2.9 7.58 2.9 12.5s4.08 8.9 9.1 8.9c5.25 0 8.74-3.69 8.74-8.89 0-.6-.07-1.06-.15-1.51H12z"/></svg>
+                        Google Review
+                    </span>
+                </div>
+                <div class="review-card reveal-delay-2">
+                    <span class="review-quote-mark">&ldquo;</span>
+                    <div class="review-image">
+                        <img src="assets/images/reviews/WhatsApp Image 2026-06-16 at 4.39.28 pm (1).jpeg" alt="Google review screenshot 35" loading="lazy">
+                    </div>
+                    <span class="review-google-tag">
+                        <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="currentColor" d="M12 10.8v3.6h5.05c-.22 1.26-1.6 3.7-5.05 3.7-3.04 0-5.52-2.52-5.52-5.6s2.48 5.6 5.52 5.6c1.73 0 2.89.74 3.55 1.37l2.42-2.33C16.53 4.5 14.47 3.6 12 3.6 6.98 3.6 2.9 7.58 2.9 12.5s4.08 8.9 9.1 8.9c5.25 0 8.74-3.69 8.74-8.89 0-.6-.07-1.06-.15-1.51H12z"/></svg>
+                        Google Review
+                    </span>
+                </div>
+                <div class="review-card reveal-delay-3">
+                    <span class="review-quote-mark">&ldquo;</span>
+                    <div class="review-image">
+                        <img src="assets/images/reviews/WhatsApp Image 2026-06-16 at 4.39.28 pm (2).jpeg" alt="Google review screenshot 36" loading="lazy">
+                    </div>
+                    <span class="review-google-tag">
+                        <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="currentColor" d="M12 10.8v3.6h5.05c-.22 1.26-1.6 3.7-5.05 3.7-3.04 0-5.52-2.52-5.52-5.6s2.48 5.6 5.52 5.6c1.73 0 2.89.74 3.55 1.37l2.42-2.33C16.53 4.5 14.47 3.6 12 3.6 6.98 3.6 2.9 7.58 2.9 12.5s4.08 8.9 9.1 8.9c5.25 0 8.74-3.69 8.74-8.89 0-.6-.07-1.06-.15-1.51H12z"/></svg>
+                        Google Review
+                    </span>
+                </div>
+                <div class="review-card reveal-delay-1">
+                    <span class="review-quote-mark">&ldquo;</span>
+                    <div class="review-image">
+                        <img src="assets/images/reviews/WhatsApp Image 2026-06-16 at 4.39.28 pm.jpeg" alt="Google review screenshot 37" loading="lazy">
+                    </div>
+                    <span class="review-google-tag">
+                        <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="currentColor" d="M12 10.8v3.6h5.05c-.22 1.26-1.6 3.7-5.05 3.7-3.04 0-5.52-2.52-5.52-5.6s2.48 5.6 5.52 5.6c1.73 0 2.89.74 3.55 1.37l2.42-2.33C16.53 4.5 14.47 3.6 12 3.6 6.98 3.6 2.9 7.58 2.9 12.5s4.08 8.9 9.1 8.9c5.25 0 8.74-3.69 8.74-8.89 0-.6-.07-1.06-.15-1.51H12z"/></svg>
+                        Google Review
+                    </span>
+                </div>
+                <div class="review-card reveal-delay-2">
+                    <span class="review-quote-mark">&ldquo;</span>
+                    <div class="review-image">
+                        <img src="assets/images/reviews/WhatsApp Image 2026-06-16 at 4.39.29 pm (1).jpeg" alt="Google review screenshot 38" loading="lazy">
+                    </div>
+                    <span class="review-google-tag">
+                        <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="currentColor" d="M12 10.8v3.6h5.05c-.22 1.26-1.6 3.7-5.05 3.7-3.04 0-5.52-2.52-5.52-5.6s2.48 5.6 5.52 5.6c1.73 0 2.89.74 3.55 1.37l2.42-2.33C16.53 4.5 14.47 3.6 12 3.6 6.98 3.6 2.9 7.58 2.9 12.5s4.08 8.9 9.1 8.9c5.25 0 8.74-3.69 8.74-8.89 0-.6-.07-1.06-.15-1.51H12z"/></svg>
+                        Google Review
+                    </span>
+                </div>
+                <div class="review-card reveal-delay-3">
+                    <span class="review-quote-mark">&ldquo;</span>
+                    <div class="review-image">
+                        <img src="assets/images/reviews/WhatsApp Image 2026-06-16 at 4.39.29 pm.jpeg" alt="Google review screenshot 39" loading="lazy">
+                    </div>
+                    <span class="review-google-tag">
+                        <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="currentColor" d="M12 10.8v3.6h5.05c-.22 1.26-1.6 3.7-5.05 3.7-3.04 0-5.52-2.52-5.52-5.6s2.48 5.6 5.52 5.6c1.73 0 2.89.74 3.55 1.37l2.42-2.33C16.53 4.5 14.47 3.6 12 3.6 6.98 3.6 2.9 7.58 2.9 12.5s4.08 8.9 9.1 8.9c5.25 0 8.74-3.69 8.74-8.89 0-.6-.07-1.06-.15-1.51H12z"/></svg>
                         Google Review
                     </span>
                 </div>
@@ -719,56 +1076,58 @@
                     <p class="section-subtitle">We typically respond within 24 hours.</p>
                 </div>
                 
-                <form class="contact-form" onsubmit="return false;">
+                <form class="contact-form">
                     <div class="form-row">
                         <div class="form-group">
                             <label for="parentName">Parent Name</label>
-                            <input type="text" id="parentName" placeholder="Priya Sharma" required>
+                            <input type="text" id="parentName" name="parentName" placeholder="Priya Sharma" required>
                         </div>
                         <div class="form-group">
                             <label for="mobileNumber">Mobile Number</label>
-                            <input type="tel" id="mobileNumber" placeholder="+91 89750 35649" required>
+                            <input type="tel" id="mobileNumber" name="mobileNumber" placeholder="+91 89750 35649" required>
                         </div>
                     </div>
                     
                     <div class="form-group">
                         <label for="email">Email Address</label>
-                        <input type="email" id="email" placeholder="you@example.com" required>
+                        <input type="email" id="email" name="email" placeholder="you@example.com" required>
                     </div>
                     
                     <div class="form-row">
                         <div class="form-group">
                             <label for="babyName">Baby Name</label>
-                            <input type="text" id="babyName" placeholder="Aarav">
+                            <input type="text" id="babyName" name="babyName" placeholder="Aarav">
                         </div>
                         <div class="form-group">
                             <label for="babyAge">Baby Age</label>
-                            <input type="text" id="babyAge" placeholder="3 months">
+                            <input type="text" id="babyAge" name="babyAge" placeholder="3 months">
                         </div>
                     </div>
                     
                     <div class="form-row">
                         <div class="form-group">
                             <label for="sessionType">Photoshoot Type</label>
-                            <select id="sessionType" required>
+                            <select id="sessionType" name="sessionType" required>
                                 <option value="">Select session</option>
                                 <option value="newborn">Newborn Photoshoot</option>
                                 <option value="maternity">Maternity Photoshoot</option>
-                                <option value="cake-smash">Cake Smash / Birthday</option>
-                                <option value="baby">Baby Photoshoot</option>
+                                <option value="infant">Tummy Time / Infant Photoshoot</option>
+                                <option value="sitter">Sitter Photoshoot</option>
+                                <option value="pre-birthday">Cake Smash / Pre-Birthday</option>
+                                <option value="toddler">Toddler / Children Photoshoot</option>
                                 <option value="family">Family Photoshoot</option>
                                 <option value="outdoor">Outdoor Photoshoot</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="sessionDate">Preferred Date</label>
-                            <input type="date" id="sessionDate">
+                            <input type="date" id="sessionDate" name="sessionDate">
                         </div>
                     </div>
                     
                     <div class="form-group">
                         <label for="message">Additional Message</label>
-                        <textarea id="message" placeholder="Share any details that will help us plan your perfect session…" rows="4"></textarea>
+                        <textarea id="message" name="message" placeholder="Share any details that will help us plan your perfect session…" rows="4"></textarea>
                     </div>
                     
                     <button type="submit" class="btn btn-primary">Send Enquiry</button>
