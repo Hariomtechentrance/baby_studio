@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gallery | The Baby Studio</title>
+    <title>Packages | The Baby Studio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -43,41 +43,43 @@
         </div>
     </nav>
 
-    <main class="gallery-page">
-        <section class="gallery-page-content">
+    <main class="packages-page">
+        <section class="packages-page-content">
             <div class="section-header center">
-                <span class="section-eyebrow">Gallery</span>
-                <h1 class="section-title">Our full session gallery</h1>
-                <p class="section-subtitle">Browse all studio images in one place. For category-specific portfolios, use the homepage portfolio cards.</p>
+                <span class="section-eyebrow">Investment</span>
+                <h1 class="section-title">Sessions to <span class="italic">suit every family</span></h1>
+                <p class="section-subtitle">Pick a session type below to see its packages, inclusions and pricing.</p>
             </div>
 
-            <div class="gallery-grid" id="galleryGrid">
-                <p class="gallery-empty" id="galleryEmpty" hidden>No photos published yet. Check back soon.</p>
+            <div class="package-plans-grid">
+                <div class="package-plan-card">
+                    <img src="assets/images/packages/package-6.jpeg" alt="Newborn session packages and pricing" loading="lazy">
+                </div>
+                <div class="package-plan-card">
+                    <img src="assets/images/packages/package-5.jpeg" alt="Maternity session packages and pricing" loading="lazy">
+                </div>
+                <div class="package-plan-card">
+                    <img src="assets/images/packages/package-3.jpeg" alt="Baby and infant session packages and pricing" loading="lazy">
+                </div>
+                <div class="package-plan-card">
+                    <img src="assets/images/packages/package-2.jpeg" alt="Sitter session packages and pricing" loading="lazy">
+                </div>
+                <div class="package-plan-card">
+                    <img src="assets/images/packages/package-1.jpeg" alt="Pre-birthday session packages and pricing" loading="lazy">
+                </div>
+                <div class="package-plan-card">
+                    <img src="assets/images/packages/package-4.jpeg" alt="Toddler session packages and pricing" loading="lazy">
+                </div>
             </div>
+
+            <p class="packages-note">Custom packages available — contact us to design your perfect session.</p>
 
             <div class="portfolio-cta">
-                <a href="index.html" class="btn btn-secondary">Back to Home</a>
+                <a href="index.html#contact" class="btn btn-primary">Book a Session</a>
             </div>
         </section>
     </main>
 
     <script src="script.js"></script>
-    <script>
-        const escapeHtml = (value = '') => {
-            const el = document.createElement('span');
-            el.textContent = value;
-            return el.innerHTML;
-        };
-        fetch('/api/photos').then(r => r.json()).then(photos => {
-            const grid = document.getElementById('galleryGrid');
-            const empty = document.getElementById('galleryEmpty');
-            if (!photos.length) { empty.hidden = false; return; }
-            grid.insertAdjacentHTML('beforeend', photos.map(photo => `
-                <div class="gallery-item"><img src="${escapeHtml(photo.imageUrl)}" alt="${escapeHtml(photo.alt || photo.title || 'Studio photo')}" loading="lazy"></div>
-            `).join(''));
-        }).catch(() => {
-            document.getElementById('galleryEmpty').hidden = false;
-        });
-    </script>
 </body>
 </html>
