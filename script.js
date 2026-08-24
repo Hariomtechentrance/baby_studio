@@ -352,3 +352,25 @@ document.addEventListener('DOMContentLoaded', () => {
 window.addEventListener('load', () => {
     document.body.style.opacity = '1';
 });
+
+// ===== Homepage portfolio covers (admin-managed) =====
+const portfolioCards = document.querySelectorAll('.portfolio-item[data-category] img');
+if (portfolioCards.length) {
+    fetch('/api/photos').then(r => r.json()).then(photos => {
+        const coverByCategory = {};
+        photos.forEach(photo => {
+            if (photo.isCover && !coverByCategory[photo.category]) coverByCategory[photo.category] = photo;
+        });
+        photos.forEach(photo => {
+            if (!coverByCategory[photo.category]) coverByCategory[photo.category] = photo;
+        });
+        portfolioCards.forEach(img => {
+            const category = img.closest('.portfolio-item').dataset.category;
+            const cover = coverByCategory[category];
+            if (cover) {
+                img.src = cover.imageUrl;
+                img.alt = cover.alt || img.alt;
+            }
+        });
+    }).catch(() => {});
+}

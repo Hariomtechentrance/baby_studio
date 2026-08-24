@@ -4,6 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>The Baby Studio | Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="admin.css">
 </head>
 <body>
@@ -17,7 +20,7 @@
         <label>Password<input name="password" type="password" autocomplete="current-password" minlength="12" required></label>
         <label id="confirmWrap" hidden>Confirm password<input name="confirmPassword" type="password" autocomplete="new-password"></label>
         <button id="authButton">Sign in</button>
-        <p id="authError" class="error" aria-live="polite"></p>
+        <p id="authError" class="error toast" aria-live="polite"></p>
       </form>
     </section>
 
@@ -31,8 +34,25 @@
               <small>Management</small>
             </div>
           </div>
+          <nav class="sidebar-nav">
+            <button class="nav-item active" data-section="overview">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="2"></rect><rect x="14" y="3" width="7" height="5" rx="2"></rect><rect x="14" y="12" width="7" height="9" rx="2"></rect><rect x="3" y="16" width="7" height="5" rx="2"></rect></svg>
+              Overview
+            </button>
+            <button class="nav-item" data-section="upload">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"></rect><circle cx="8.5" cy="8.5" r="1.8"></circle><path d="M21 15l-5-5-11 11"></path></svg>
+              Upload
+            </button>
+            <button class="nav-item" data-section="users">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="3"></rect><path d="M3 9h18M8 2v4M16 2v4"></path></svg>
+              Bookings
+            </button>
+          </nav>
           <div class="sidebar-footer">
-            <button class="secondary" id="signOut">Logout</button>
+            <button class="secondary" id="signOut">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><path d="M16 17l5-5-5-5"></path><path d="M21 12H9"></path></svg>
+              Logout
+            </button>
           </div>
         </aside>
 
@@ -47,27 +67,31 @@
               <span>Enquiries</span>
             </div>
           </header>
-          <div class="section-tabs">
-            <button class="nav-item active" data-section="overview">Overview</button>
-            <button class="nav-item" data-section="upload">Upload</button>
-            <button class="nav-item" data-section="users">Bookings</button>
-          </div>
 
           <section class="panel active" id="panel-overview">
             <div class="stats">
-              <article><strong id="totalClientsCard">0</strong><span>Total enquiries</span></article>
-              <article><strong id="newClients">0</strong><span>Needs reply</span></article>
-              <article><strong id="photoCount">0</strong><span>Published photos</span></article>
+              <article>
+                <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></div>
+                <strong id="totalClientsCard">0</strong><span>Total enquiries</span>
+              </article>
+              <article>
+                <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></div>
+                <strong id="newClients">0</strong><span>Needs reply</span>
+              </article>
+              <article>
+                <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"></rect><circle cx="8.5" cy="8.5" r="1.8"></circle><path d="M21 15l-5-5-11 11"></path></svg></div>
+                <strong id="photoCount">0</strong><span>Published photos</span>
+              </article>
             </div>
             <div class="panel-grid">
               <div class="panel-card">
                 <h2>Recent enquiries</h2>
-                <p class="muted">Use the Bookings tab to review each request and update status.</p>
+                <p>Use the Bookings tab to review each request and update status.</p>
                 <div id="overviewEnquiries" class="overview-list"></div>
               </div>
               <div class="panel-card">
                 <h2>Portfolio snapshot</h2>
-                <p class="muted">Manage the published portfolio and keep the studio gallery fresh.</p>
+                <p>Manage the published portfolio and keep the studio gallery fresh.</p>
                 <div id="overviewPhotos" class="overview-list"></div>
               </div>
             </div>
@@ -78,23 +102,42 @@
               <div>
                 <p class="eyebrow">PORTFOLIO</p>
                 <h2>Upload a photo via hosted link</h2>
-                <p class="muted">Paste your Cloudinary or external image URL here, then publish it to the public gallery.</p>
+                <p>Paste your Cloudinary or external image URL here, choose its section, and publish. The photo will appear only on that section's portfolio page.</p>
               </div>
             </div>
             <div class="panel-card">
-              <form id="photoForm">
-                <label>Photo URL<input name="imageUrl" type="url" placeholder="https://res.cloudinary.com/.../image.jpg" required></label>
-                <div class="field-row">
-                  <label>Title<input name="title" placeholder="A golden morning"></label>
-                  <label>Category<select name="category"><option value="maternity">Maternity</option><option value="newborn">Newborn</option><option value="infant">Infant / Tummy Time</option><option value="sitter">Sitter</option><option value="pre-birthday">Pre-Birthday / Cake Smash</option><option value="toddler">Toddler / Children</option><option value="family">Family</option><option value="outdoor">Outdoor</option></select></label>
+              <div class="upload-layout">
+                <form id="photoForm">
+                  <label>Photo URL<input name="imageUrl" type="url" placeholder="https://res.cloudinary.com/.../image.jpg" required></label>
+                  <div class="field-row">
+                    <label>Title<input name="title" placeholder="A golden morning"></label>
+                    <label>Category<select name="category"><option value="maternity">Maternity</option><option value="newborn">Newborn</option><option value="infant">Infant / Tummy Time</option><option value="sitter">Sitter</option><option value="pre-birthday">Pre-Birthday / Cake Smash</option><option value="toddler">Toddler / Children</option><option value="family">Family</option></select></label>
+                  </div>
+                  <label>Image description<input name="alt" placeholder="Baby wrapped in a soft cream blanket"></label>
+                  <button>Publish to portfolio</button>
+                  <p id="photoMessage" class="message toast" aria-live="polite"></p>
+                </form>
+                <div class="upload-preview" id="uploadPreview">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"></rect><circle cx="8.5" cy="8.5" r="1.8"></circle><path d="M21 15l-5-5-11 11"></path></svg>
+                  <span id="uploadPreviewHint">Paste an image URL above to preview it here before publishing.</span>
+                  <img id="uploadPreviewImg" alt="Preview" hidden>
                 </div>
-                <label>Image description<input name="alt" placeholder="Baby wrapped in a soft cream blanket"></label>
-                <button>Publish to portfolio</button>
-                <p id="photoMessage" class="message" aria-live="polite"></p>
-              </form>
+              </div>
             </div>
             <div class="panel-card">
-              <h3>Published photos</h3>
+              <div class="panel-header">
+                <h3>All photos</h3>
+                <select id="photoCategoryFilter">
+                  <option value="">All sections</option>
+                  <option value="maternity">Maternity</option>
+                  <option value="newborn">Newborn</option>
+                  <option value="infant">Infant / Tummy Time</option>
+                  <option value="sitter">Sitter</option>
+                  <option value="pre-birthday">Pre-Birthday / Cake Smash</option>
+                  <option value="toddler">Toddler / Children</option>
+                  <option value="family">Family</option>
+                </select>
+              </div>
               <div id="photos" class="photos"></div>
             </div>
           </section>
@@ -111,7 +154,7 @@
               <div class="table-wrap">
                 <table class="bookings-table">
                   <thead>
-                    <tr><th>Parent</th><th>Session</th><th>Contact</th><th>Status</th><th>Date</th></tr>
+                    <tr><th>Parent</th><th>Session</th><th>Contact</th><th>Status</th><th>Date</th><th>Actions</th></tr>
                   </thead>
                   <tbody id="inquiries"></tbody>
                 </table>

@@ -5,6 +5,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const crypto = require('node:crypto');
 const { Pool } = require('pg');
+const LEGACY_PHOTOS = require('./legacy-photos.js');
 
 const rootDir = __dirname;
 const sessions = new Map();
@@ -75,9 +76,20 @@ async function ensureSchema() {
   await run(`CREATE TABLE IF NOT EXISTS inquiries (id TEXT PRIMARY KEY, "parentName" TEXT, "mobileNumber" TEXT, email TEXT, "babyName" TEXT, "babyAge" TEXT, "sessionType" TEXT, "sessionDate" TEXT, message TEXT, status TEXT NOT NULL DEFAULT 'new', "createdAt" TEXT NOT NULL, "updatedAt" TEXT NOT NULL)`);
   await run(`CREATE TABLE IF NOT EXISTS photos (id TEXT PRIMARY KEY, title TEXT, category TEXT, alt TEXT, "imageUrl" TEXT, published INTEGER NOT NULL DEFAULT 1, "createdAt" TEXT NOT NULL, "updatedAt" TEXT NOT NULL)`);
   await run(`CREATE TABLE IF NOT EXISTS admin_users (id SERIAL PRIMARY KEY, username TEXT UNIQUE, salt TEXT, hash TEXT, "createdAt" TEXT NOT NULL, "updatedAt" TEXT NOT NULL)`);
+  await run(`ALTER TABLE photos ADD COLUMN IF NOT EXISTS "isCover" INTEGER NOT NULL DEFAULT 0`);
+}
+async function seedLegacyPhotos() {
+  const now = new Date().toISOString();
+  for (const photo of LEGACY_PHOTOS) {
+    await run(
+      `INSERT INTO photos (id,title,category,alt,"imageUrl",published,"isCover","createdAt","updatedAt") VALUES (?,?,?,?,?,1,?,?,?) ON CONFLICT (id) DO NOTHING`,
+      [photo.id, photo.title, photo.category, photo.alt, photo.imageUrl, photo.isCover ? 1 : 0, now, now]
+    );
+  }
 }
 async function initDb() {
   await ensureSchema();
+  await seedLegacyPhotos();
 }
 async function getAdminAccount(username) {
   if (process.env.ADMIN_USERNAME && process.env.ADMIN_PASSWORD) return { username: process.env.ADMIN_USERNAME, password: process.env.ADMIN_PASSWORD, environment: true };
@@ -111,7 +123,7 @@ async function api(req, res, url) {
     return send(res, 201, { ok: true });
   }
   if (req.method === 'GET' && url.pathname === '/api/photos') {
-    const photos = await all('SELECT id,title,category,alt,"imageUrl",published,"createdAt" FROM photos WHERE published = 1 ORDER BY "createdAt" DESC');
+    const photos = await all('SELECT id,title,category,alt,"imageUrl",published,"isCover","createdAt" FROM photos WHERE published = 1 ORDER BY "createdAt" DESC');
     return send(res, 200, photos);
   }
   if (req.method === 'GET' && url.pathname === '/api/admin/status') {
@@ -181,6 +193,13 @@ async function api(req, res, url) {
     const updated = await get('SELECT * FROM inquiries WHERE id = ?', [inquiryId]);
     return send(res, 200, updated);
   }
+  if (req.method === 'DELETE' && /^\/api\/admin\/inquiries\/[\w-]+$/.test(url.pathname)) {
+    if (!requireAdmin(req, res)) return;
+    const inquiryId = url.pathname.split('/').pop();
+    const result = await run('DELETE FROM inquiries WHERE id = ?', [inquiryId]);
+    if (result.rowCount === 0) return send(res, 404, { error: 'Inquiry not found.' });
+    return send(res, 200, { ok: true });
+  }
   if (req.method === 'PATCH' && /^\/api\/admin\/photos\/[\w-]+$/.test(url.pathname)) {
     if (!requireAdmin(req, res)) return;
     const input = await body(req);
@@ -191,7 +210,9 @@ async function api(req, res, url) {
     const title = typeof input.title === 'string' ? safe(input.title, 120) || photo.title : photo.title;
     const category = typeof input.category === 'string' ? safe(input.category, 50) || photo.category : photo.category;
     const alt = typeof input.alt === 'string' ? safe(input.alt, 160) || photo.alt : photo.alt;
-    await run('UPDATE photos SET title = ?, category = ?, alt = ?, published = ?, "updatedAt" = ? WHERE id = ?', [title, category, alt, published, new Date().toISOString(), photoId]);
+    const isCover = typeof input.isCover === 'boolean' ? (input.isCover ? 1 : 0) : photo.isCover;
+    if (isCover === 1) await run('UPDATE photos SET "isCover" = 0 WHERE category = ? AND id != ?', [category, photoId]);
+    await run('UPDATE photos SET title = ?, category = ?, alt = ?, published = ?, "isCover" = ?, "updatedAt" = ? WHERE id = ?', [title, category, alt, published, isCover, new Date().toISOString(), photoId]);
     const updated = await get('SELECT * FROM photos WHERE id = ?', [photoId]);
     return send(res, 200, updated);
   }

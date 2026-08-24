@@ -29,8 +29,6 @@
                 <a href="index.html#services" class="nav-link">Services</a>
                 <a href="index.html#portfolio" class="nav-link">Portfolio</a>
                 <a href="gallery.html" class="nav-link">Gallery</a>
-                <a href="index.html#reviews" class="nav-link">Reviews</a>
-                <a href="index.html#packages" class="nav-link">Packages</a>
                 <a href="index.html#contact" class="nav-link">Contact</a>
             </div>
 
@@ -67,84 +65,37 @@
             maternity: {
                 title: 'Maternity',
                 subtitle: '7 months to 9 months of Pregnancy',
-                description: 'Soft, elegant maternity sessions that celebrate the glow of pregnancy.',
-                images: [
-                    'assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_0593.jpg',
-                    'assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_1321.jpg',
-                    'assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_4720.jpg',
-                    'assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_5476.jpg'
-                ]
+                description: 'Soft, elegant maternity sessions that celebrate the glow of pregnancy.'
             },
             newborn: {
                 title: 'Newborn',
                 subtitle: '5 days to 1 month old Baby',
-                description: 'First-week newborn sessions with calm poses and tiny details.',
-                images: [
-                    'assets/images/gallery/drive-download-20260621T123026Z-3-001/Collage B2.jpg',
-                    'assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_0862.jpg',
-                    'assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_3366.jpg',
-                    'assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_4783.jpg'
-                ]
+                description: 'First-week newborn sessions with calm poses and tiny details.'
             },
             infant: {
                 title: 'Infant',
                 subtitle: '2–7 months old Baby',
-                description: 'Tender infant sessions capturing smiles, milestones, and gentle growth.',
-                images: [
-                    'assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_0862.jpg',
-                    'assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_4416.jpg',
-                    'assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_5643.jpg'
-                ]
+                description: 'Tender infant sessions capturing smiles, milestones, and gentle growth.'
             },
             sitter: {
                 title: 'Sitter',
                 subtitle: '8–15 months old Baby',
-                description: 'Sitter sessions for curious babies learning to sit and explore.',
-                images: [
-                    'assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_1941.jpg',
-                    'assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_8915.jpg',
-                    'assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_9099.jpg'
-                ]
+                description: 'Sitter sessions for curious babies learning to sit and explore.'
             },
             'pre-birthday': {
                 title: 'Pre Birthday',
                 subtitle: '10–14 months old Baby',
-                description: 'Cake smash and birthday sessions full of joy and color.',
-                images: [
-                    'assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_2059.jpg',
-                    'assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_5463.jpg',
-                    'assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_9913.jpg'
-                ]
+                description: 'Cake smash and birthday sessions full of joy and color.'
             },
             toddler: {
                 title: 'Toddler',
                 subtitle: '14 months & Above',
-                description: 'Free-spirited toddler sessions for growing personalities.',
-                images: [
-                    'assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_2974.jpg',
-                    'assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_3381.jpg',
-                    'assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_8220.jpg'
-                ]
-            },
-            lifestyle: {
-                title: 'Lifestyle',
-                subtitle: 'For All',
-                description: 'Everyday family stories captured in natural, relaxed moments.',
-                images: [
-                    'assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_1321.jpg',
-                    'assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_4828.jpg',
-                    'assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_4847.jpg'
-                ]
+                description: 'Free-spirited toddler sessions for growing personalities.'
             },
             family: {
                 title: 'Family',
                 subtitle: 'For All',
-                description: 'Family portraits that celebrate togetherness and connection.',
-                images: [
-                    'assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_3317.jpg',
-                    'assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_4985.jpg',
-                    'assets/images/gallery/drive-download-20260621T123026Z-3-001/IMG_9208.jpg'
-                ]
+                description: 'Family portraits that celebrate togetherness and connection.'
             }
         };
 
@@ -153,7 +104,24 @@
             return params.get(name);
         }
 
-        function renderGallery(categoryKey) {
+        const escapeHtml = (value = '') => {
+            const el = document.createElement('span');
+            el.textContent = value;
+            return el.innerHTML;
+        };
+
+        async function fetchUploadedPhotos(categoryKey) {
+            try {
+                const response = await fetch('/api/photos');
+                if (!response.ok) return [];
+                const photos = await response.json();
+                return photos.filter(photo => photo.category === categoryKey);
+            } catch {
+                return [];
+            }
+        }
+
+        async function renderGallery(categoryKey) {
             const category = categories[categoryKey];
             const heading = document.getElementById('portfolioHeading');
             const subtext = document.getElementById('portfolioSubtext');
@@ -175,15 +143,21 @@
             description.textContent = category.description;
             gallery.appendChild(description);
 
+            const uploadedPhotos = await fetchUploadedPhotos(categoryKey);
+            if (!uploadedPhotos.length) {
+                gallery.appendChild(Object.assign(document.createElement('p'), { className: 'portfolio-empty', textContent: 'No photos published in this section yet.' }));
+                return;
+            }
+
             const grid = document.createElement('div');
             grid.className = 'portfolio-detail-grid';
 
-            category.images.forEach(src => {
+            uploadedPhotos.forEach(photo => {
                 const item = document.createElement('div');
                 item.className = 'portfolio-detail-item';
                 item.innerHTML = `
                     <div class="portfolio-detail-image">
-                        <img src="${src}" alt="${category.title} gallery image">
+                        <img src="${escapeHtml(photo.imageUrl)}" alt="${escapeHtml(photo.alt || category.title + ' gallery image')}">
                     </div>
                 `;
                 grid.appendChild(item);

@@ -46,14 +46,17 @@ function renderOverview(db) {
     </div>
   `).join('') : '<p class="muted">No published photos yet.</p>';
 }
-function renderPhotos(db) {
+let allPhotos = [];
+function renderPhotos(photoList) {
   const photos = document.getElementById('photos');
-  photos.innerHTML = db.photos.length ? db.photos.map((photo) => {
+  photos.innerHTML = photoList.length ? photoList.map((photo) => {
     const published = photo.published === 1 || photo.published === true || photo.published === '1';
+    const isCover = photo.isCover === 1 || photo.isCover === true;
     return `
-      <article class="photo">
+      <article class="photo" data-published="${published ? '1' : '0'}">
         <img src="${escapeHtml(photo.imageUrl)}" alt="${escapeHtml(photo.alt)}">
         <div class="photo-meta">
+          ${isCover ? '<span class="photo-cover-badge">★ Homepage cover</span>' : ''}
           <div class="photo-title">${escapeHtml(photo.title)}</div>
           <div class="photo-label">${escapeHtml(photo.category)}</div>
           <div class="photo-status">${published ? 'Published' : 'Hidden'}</div>
@@ -61,9 +64,12 @@ function renderPhotos(db) {
             <button class="secondary" data-action="toggle" data-id="${photo.id}" data-published="${published ? '1' : '0'}">${published ? 'Unpublish' : 'Publish'}</button>
             <button class="secondary danger" data-action="delete" data-id="${photo.id}">Delete</button>
           </div>
+          <div class="photo-actions">
+            <button class="secondary" data-action="cover" data-id="${photo.id}" data-cover="${isCover ? '1' : '0'}">${isCover ? 'Remove as cover' : 'Set as homepage cover'}</button>
+          </div>
         </div>
       </article>`;
-  }).join('') : '<p class="muted">No photos published yet.</p>';
+  }).join('') : '<p class="muted">No photos in this section yet.</p>';
   photos.querySelectorAll('button[data-action]').forEach((button) => {
     const id = button.dataset.id;
     if (button.dataset.action === 'delete') {
@@ -80,8 +86,20 @@ function renderPhotos(db) {
         loadDashboard();
       });
     }
+    if (button.dataset.action === 'cover') {
+      button.addEventListener('click', async () => {
+        const isCover = button.dataset.cover === '1';
+        await request(`/api/admin/photos/${id}`, { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ isCover: !isCover }) });
+        loadDashboard();
+      });
+    }
   });
 }
+function applyPhotoFilter() {
+  const filter = document.getElementById('photoCategoryFilter').value;
+  renderPhotos(filter ? allPhotos.filter((p) => p.category === filter) : allPhotos);
+}
+document.getElementById('photoCategoryFilter').addEventListener('change', applyPhotoFilter);
 function renderBookings(db) {
   document.getElementById('totalClientsTable').textContent = db.inquiries.length;
   const tbody = document.getElementById('inquiries');
@@ -90,15 +108,37 @@ function renderBookings(db) {
       <td><strong>${escapeHtml(item.parentName)}</strong><br><span>${escapeHtml(item.email)}</span></td>
       <td>${escapeHtml(item.sessionType)}<br><small>${escapeHtml(item.babyName ? `${item.babyName} ${item.babyAge}` : 'No baby details')}</small></td>
       <td>${escapeHtml(item.mobileNumber)}</td>
-      <td><select class="status-select" data-id="${item.id}">${['new','contacted','booked','closed'].map((status) => `<option value="${status}" ${item.status === status ? 'selected' : ''}>${status}</option>`).join('')}</select></td>
+      <td><select class="status-select" data-id="${item.id}" data-status="${item.status}">${['new','contacted','booked','closed'].map((status) => `<option value="${status}" ${item.status === status ? 'selected' : ''}>${status}</option>`).join('')}</select></td>
       <td>${escapeHtml(item.sessionDate || 'TBD')}</td>
-    </tr>`).join('') : '<tr><td colspan="5" class="muted">No enquiries available.</td></tr>';
+      <td><button class="secondary danger" data-action="delete-inquiry" data-id="${item.id}">Delete</button></td>
+    </tr>`).join('') : '<tr><td colspan="6" class="muted">No enquiries available.</td></tr>';
   tbody.querySelectorAll('.status-select').forEach((select) => {
     select.addEventListener('change', async () => {
+      select.dataset.status = select.value;
       await request(`/api/admin/inquiries/${select.dataset.id}`, { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ status: select.value }) });
       loadDashboard();
     });
   });
+  tbody.querySelectorAll('[data-action="delete-inquiry"]').forEach((button) => {
+    button.addEventListener('click', async () => {
+      if (!confirm('Delete this enquiry permanently?')) return;
+      await request(`/api/admin/inquiries/${button.dataset.id}`, { method: 'DELETE' });
+      loadDashboard();
+    });
+  });
+}
+function animateCount(el, target) {
+  const from = Number(el.textContent) || 0;
+  if (from === target) { el.textContent = target; return; }
+  const duration = 500;
+  const start = performance.now();
+  function tick(now) {
+    const progress = Math.min((now - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.round(from + (target - from) * eased);
+    if (progress < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
 }
 async function loadDashboard() {
   const response = await request('/api/admin/dashboard');
@@ -110,14 +150,15 @@ async function loadDashboard() {
   const db = await response.json();
   document.getElementById('authView').hidden = true;
   document.getElementById('dashboardView').hidden = false;
-  document.getElementById('totalClients').textContent = db.inquiries.length;
-  document.getElementById('totalClientsCard').textContent = db.inquiries.length;
-  document.getElementById('newClients').textContent = db.inquiries.filter((item) => item.status === 'new').length;
-  document.getElementById('photoCount').textContent = db.photos.filter((item) => item.published === 1 || item.published === true).length;
+  animateCount(document.getElementById('totalClients'), db.inquiries.length);
+  animateCount(document.getElementById('totalClientsCard'), db.inquiries.length);
+  animateCount(document.getElementById('newClients'), db.inquiries.filter((item) => item.status === 'new').length);
+  animateCount(document.getElementById('photoCount'), db.photos.filter((item) => item.published === 1 || item.published === true).length);
   document.getElementById('overviewEnquiries').innerHTML = '';
   document.getElementById('overviewPhotos').innerHTML = '';
   renderOverview(db);
-  renderPhotos(db);
+  allPhotos = db.photos;
+  applyPhotoFilter();
   renderBookings(db);
   setActiveSection('overview');
 }
@@ -135,11 +176,11 @@ document.getElementById('authForm').addEventListener('submit', async (event) => 
   const form = event.currentTarget;
   const data = Object.fromEntries(new FormData(form));
   const error = document.getElementById('authError');
-  error.textContent = '';
-  if (setupMode && data.password !== data.confirmPassword) return error.textContent = 'Passwords do not match.';
+  setToast(error, '');
+  if (setupMode && data.password !== data.confirmPassword) return setToast(error, 'Passwords do not match.', 'error');
   const response = await fetch(setupMode ? '/api/admin/setup' : '/api/admin/login', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
   const result = await response.json();
-  if (!response.ok) return error.textContent = result.error || 'Something went wrong.';
+  if (!response.ok) return setToast(error, result.error || 'Something went wrong.', 'error');
   if (setupMode) {
     form.reset();
     return showAuth(true);
@@ -148,18 +189,54 @@ document.getElementById('authForm').addEventListener('submit', async (event) => 
   localStorage.setItem(tokenKey, token);
   loadDashboard();
 });
+function setToast(el, text, type) {
+  el.textContent = text;
+  el.classList.remove('success', 'error');
+  if (type) el.classList.add(type);
+  el.classList.toggle('show', Boolean(text));
+  clearTimeout(el._toastTimer);
+  if (type === 'success') el._toastTimer = setTimeout(() => el.classList.remove('show'), 4000);
+}
 document.getElementById('photoForm').addEventListener('submit', async (event) => {
   event.preventDefault();
   const form = event.currentTarget;
   const note = document.getElementById('photoMessage');
   const imageUrl = form.imageUrl.value.trim();
-  if (!imageUrl) return note.textContent = 'Enter an image URL.';
-  note.textContent = 'Saving…';
+  if (!imageUrl) return setToast(note, 'Enter an image URL.', 'error');
+  setToast(note, 'Saving…');
   const response = await request('/api/admin/photos', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ imageUrl, title: form.title.value, category: form.category.value, alt: form.alt.value }) });
   const result = await response.json();
-  note.textContent = response.ok ? 'Photo published to the public portfolio.' : result.error;
-  if (response.ok) { form.reset(); loadDashboard(); }
+  setToast(note, response.ok ? 'Photo published to the public portfolio.' : result.error, response.ok ? 'success' : 'error');
+  if (response.ok) {
+    form.reset();
+    resetPreview();
+    loadDashboard();
+  }
 });
+const previewBox = document.getElementById('uploadPreview');
+const previewImg = document.getElementById('uploadPreviewImg');
+const previewHint = document.getElementById('uploadPreviewHint');
+function resetPreview() {
+  if (!previewBox) return;
+  previewBox.classList.remove('has-image');
+  previewImg.hidden = true;
+  previewImg.removeAttribute('src');
+  previewHint.hidden = false;
+}
+const previewUrlInput = document.querySelector('#photoForm [name="imageUrl"]');
+if (previewUrlInput) {
+  previewUrlInput.addEventListener('input', () => {
+    const value = previewUrlInput.value.trim();
+    if (!/^https?:\/\/.+\.(?:jpe?g|png|webp)(?:[?#].*)?$/i.test(value)) return resetPreview();
+    previewImg.onload = () => {
+      previewBox.classList.add('has-image');
+      previewImg.hidden = false;
+      previewHint.hidden = true;
+    };
+    previewImg.onerror = () => resetPreview();
+    previewImg.src = value;
+  });
+}
 document.getElementById('signOut').addEventListener('click', async () => {
   await request('/api/admin/logout', { method: 'POST' });
   localStorage.removeItem(tokenKey);
