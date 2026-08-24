@@ -1,16 +1,17 @@
+require('dotenv').config();
+require('node:net').setDefaultAutoSelectFamily(false);
 const http = require('node:http');
 const fs = require('node:fs');
-const fsp = require('node:fs/promises');
 const path = require('node:path');
 const crypto = require('node:crypto');
-const sqlite3 = require('sqlite3').verbose();
+const { Pool } = require('pg');
 
 const rootDir = __dirname;
-const dataDir = path.join(rootDir, 'data');
-const dbPath = path.join(dataDir, 'studio.db');
 const sessions = new Map();
 const types = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8', '.json': 'application/json; charset=utf-8', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.png': 'image/png', '.webp': 'image/webp', '.svg': 'image/svg+xml' };
-let db;
+
+if (!process.env.DATABASE_URL) throw new Error('DATABASE_URL is not set.');
+const pool = new Pool({ connectionString: process.env.DATABASE_URL });
 
 function send(res, status, body, type = 'application/json; charset=utf-8') {
   res.writeHead(status, { 'Content-Type': type, 'Cache-Control': 'no-store' });
@@ -55,76 +56,28 @@ function requireAdmin(req, res) {
   }
   return true;
 }
-function run(sql, params = []) {
-  return new Promise((resolve, reject) => {
-    db.run(sql, params, function (err) {
-      if (err) reject(err);
-      else resolve(this);
-    });
-  });
+function toPositional(sql) {
+  let n = 0;
+  return sql.replace(/\?/g, () => `$${++n}`);
 }
-function get(sql, params = []) {
-  return new Promise((resolve, reject) => {
-    db.get(sql, params, (err, row) => {
-      if (err) reject(err);
-      else resolve(row);
-    });
-  });
+async function run(sql, params = []) {
+  return pool.query(toPositional(sql), params);
 }
-function all(sql, params = []) {
-  return new Promise((resolve, reject) => {
-    db.all(sql, params, (err, rows) => {
-      if (err) reject(err);
-      else resolve(rows);
-    });
-  });
+async function get(sql, params = []) {
+  const result = await pool.query(toPositional(sql), params);
+  return result.rows[0];
+}
+async function all(sql, params = []) {
+  const result = await pool.query(toPositional(sql), params);
+  return result.rows;
 }
 async function ensureSchema() {
-  await run(`CREATE TABLE IF NOT EXISTS inquiries (id TEXT PRIMARY KEY, parentName TEXT, mobileNumber TEXT, email TEXT, babyName TEXT, babyAge TEXT, sessionType TEXT, sessionDate TEXT, message TEXT, status TEXT NOT NULL DEFAULT 'new', createdAt TEXT NOT NULL, updatedAt TEXT NOT NULL)`);
-  await run(`CREATE TABLE IF NOT EXISTS photos (id TEXT PRIMARY KEY, title TEXT, category TEXT, alt TEXT, imageUrl TEXT, published INTEGER NOT NULL DEFAULT 1, createdAt TEXT NOT NULL, updatedAt TEXT NOT NULL)`);
-  await run(`CREATE TABLE IF NOT EXISTS admin_users (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT UNIQUE, salt TEXT, hash TEXT, createdAt TEXT NOT NULL, updatedAt TEXT NOT NULL)`);
-}
-async function migrateFromJson() {
-  const jsonFile = path.join(dataDir, 'studio.json');
-  try {
-    const raw = await fsp.readFile(jsonFile, 'utf8');
-    const parsed = JSON.parse(raw);
-    const inquiryCount = await get('SELECT COUNT(*) AS count FROM inquiries');
-    if (inquiryCount && inquiryCount.count === 0 && Array.isArray(parsed.inquiries)) {
-      for (const inquiry of parsed.inquiries) {
-        await run(`INSERT OR IGNORE INTO inquiries (id,parentName,mobileNumber,email,babyName,babyAge,sessionType,sessionDate,message,status,createdAt,updatedAt) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)`, [inquiry.id, inquiry.parentName, inquiry.mobileNumber, inquiry.email, inquiry.babyName, inquiry.babyAge, inquiry.sessionType, inquiry.sessionDate, inquiry.message, inquiry.status || 'new', inquiry.createdAt || new Date().toISOString(), inquiry.createdAt || new Date().toISOString()]);
-      }
-    }
-    const photoCount = await get('SELECT COUNT(*) AS count FROM photos');
-    if (photoCount && photoCount.count === 0 && Array.isArray(parsed.photos)) {
-      for (const photo of parsed.photos) {
-        await run(`INSERT OR IGNORE INTO photos (id,title,category,alt,imageUrl,published,createdAt,updatedAt) VALUES (?,?,?,?,?,?,?,?)`, [photo.id, photo.title, photo.category, photo.alt, photo.imageUrl, photo.published ? 1 : 0, photo.createdAt || new Date().toISOString(), photo.createdAt || new Date().toISOString()]);
-      }
-    }
-  } catch {
-    // ignore missing or invalid JSON
-  }
-  const adminFile = path.join(dataDir, 'admin.json');
-  try {
-    const raw = await fsp.readFile(adminFile, 'utf8');
-    const admin = JSON.parse(raw);
-    if (admin.username && admin.hash) {
-      await run(`INSERT OR IGNORE INTO admin_users (username,salt,hash,createdAt,updatedAt) VALUES (?,?,?,?,?)`, [admin.username, admin.salt, admin.hash, admin.createdAt || new Date().toISOString(), admin.createdAt || new Date().toISOString()]);
-    }
-  } catch {
-    // ignore missing or invalid admin file
-  }
+  await run(`CREATE TABLE IF NOT EXISTS inquiries (id TEXT PRIMARY KEY, "parentName" TEXT, "mobileNumber" TEXT, email TEXT, "babyName" TEXT, "babyAge" TEXT, "sessionType" TEXT, "sessionDate" TEXT, message TEXT, status TEXT NOT NULL DEFAULT 'new', "createdAt" TEXT NOT NULL, "updatedAt" TEXT NOT NULL)`);
+  await run(`CREATE TABLE IF NOT EXISTS photos (id TEXT PRIMARY KEY, title TEXT, category TEXT, alt TEXT, "imageUrl" TEXT, published INTEGER NOT NULL DEFAULT 1, "createdAt" TEXT NOT NULL, "updatedAt" TEXT NOT NULL)`);
+  await run(`CREATE TABLE IF NOT EXISTS admin_users (id SERIAL PRIMARY KEY, username TEXT UNIQUE, salt TEXT, hash TEXT, "createdAt" TEXT NOT NULL, "updatedAt" TEXT NOT NULL)`);
 }
 async function initDb() {
-  await fsp.mkdir(dataDir, { recursive: true });
-  db = await new Promise((resolve, reject) => {
-    const instance = new sqlite3.Database(dbPath, sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE, (err) => {
-      if (err) reject(err);
-      else resolve(instance);
-    });
-  });
   await ensureSchema();
-  await migrateFromJson();
 }
 async function getAdminAccount(username) {
   if (process.env.ADMIN_USERNAME && process.env.ADMIN_PASSWORD) return { username: process.env.ADMIN_USERNAME, password: process.env.ADMIN_PASSWORD, environment: true };
@@ -154,11 +107,11 @@ async function api(req, res, url) {
       updatedAt: new Date().toISOString(),
     };
     if (!inquiry.parentName || !inquiry.mobileNumber || !inquiry.email || !inquiry.sessionType) return send(res, 422, { error: 'Please complete all required fields.' });
-    await run(`INSERT INTO inquiries (id,parentName,mobileNumber,email,babyName,babyAge,sessionType,sessionDate,message,status,createdAt,updatedAt) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)`, [inquiry.id, inquiry.parentName, inquiry.mobileNumber, inquiry.email, inquiry.babyName, inquiry.babyAge, inquiry.sessionType, inquiry.sessionDate, inquiry.message, inquiry.status, inquiry.createdAt, inquiry.updatedAt]);
+    await run(`INSERT INTO inquiries (id,"parentName","mobileNumber",email,"babyName","babyAge","sessionType","sessionDate",message,status,"createdAt","updatedAt") VALUES (?,?,?,?,?,?,?,?,?,?,?,?)`, [inquiry.id, inquiry.parentName, inquiry.mobileNumber, inquiry.email, inquiry.babyName, inquiry.babyAge, inquiry.sessionType, inquiry.sessionDate, inquiry.message, inquiry.status, inquiry.createdAt, inquiry.updatedAt]);
     return send(res, 201, { ok: true });
   }
   if (req.method === 'GET' && url.pathname === '/api/photos') {
-    const photos = await all('SELECT id,title,category,alt,imageUrl,published,createdAt FROM photos WHERE published = 1 ORDER BY createdAt DESC');
+    const photos = await all('SELECT id,title,category,alt,"imageUrl",published,"createdAt" FROM photos WHERE published = 1 ORDER BY "createdAt" DESC');
     return send(res, 200, photos);
   }
   if (req.method === 'GET' && url.pathname === '/api/admin/status') {
@@ -174,7 +127,7 @@ async function api(req, res, url) {
     const salt = crypto.randomBytes(16).toString('hex');
     const hash = passwordHash(password, salt);
     const now = new Date().toISOString();
-    await run(`INSERT INTO admin_users (username,salt,hash,createdAt,updatedAt) VALUES (?,?,?,?,?)`, [username, salt, hash, now, now]);
+    await run(`INSERT INTO admin_users (username,salt,hash,"createdAt","updatedAt") VALUES (?,?,?,?,?)`, [username, salt, hash, now, now]);
     return send(res, 201, { ok: true });
   }
   if (req.method === 'POST' && url.pathname === '/api/admin/login') {
@@ -195,8 +148,8 @@ async function api(req, res, url) {
   }
   if (req.method === 'GET' && url.pathname === '/api/admin/dashboard') {
     if (!requireAdmin(req, res)) return;
-    const inquiries = await all('SELECT * FROM inquiries ORDER BY createdAt DESC');
-    const photos = await all('SELECT * FROM photos ORDER BY createdAt DESC');
+    const inquiries = await all('SELECT * FROM inquiries ORDER BY "createdAt" DESC');
+    const photos = await all('SELECT * FROM photos ORDER BY "createdAt" DESC');
     return send(res, 200, { inquiries, photos });
   }
   if (req.method === 'POST' && url.pathname === '/api/admin/photos') {
@@ -214,7 +167,7 @@ async function api(req, res, url) {
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
     };
-    await run(`INSERT INTO photos (id,title,category,alt,imageUrl,published,createdAt,updatedAt) VALUES (?,?,?,?,?,?,?,?)`, [photo.id, photo.title, photo.category, photo.alt, photo.imageUrl, photo.published, photo.createdAt, photo.updatedAt]);
+    await run(`INSERT INTO photos (id,title,category,alt,"imageUrl",published,"createdAt","updatedAt") VALUES (?,?,?,?,?,?,?,?)`, [photo.id, photo.title, photo.category, photo.alt, photo.imageUrl, photo.published, photo.createdAt, photo.updatedAt]);
     return send(res, 201, photo);
   }
   if (req.method === 'PATCH' && /^\/api\/admin\/inquiries\/[\w-]+$/.test(url.pathname)) {
@@ -224,7 +177,7 @@ async function api(req, res, url) {
     const item = await get('SELECT * FROM inquiries WHERE id = ?', [inquiryId]);
     if (!item) return send(res, 404, { error: 'Inquiry not found.' });
     const status = ['new', 'contacted', 'booked', 'closed'].includes(input.status) ? input.status : item.status;
-    await run('UPDATE inquiries SET status = ?, updatedAt = ? WHERE id = ?', [status, new Date().toISOString(), inquiryId]);
+    await run('UPDATE inquiries SET status = ?, "updatedAt" = ? WHERE id = ?', [status, new Date().toISOString(), inquiryId]);
     const updated = await get('SELECT * FROM inquiries WHERE id = ?', [inquiryId]);
     return send(res, 200, updated);
   }
@@ -238,7 +191,7 @@ async function api(req, res, url) {
     const title = typeof input.title === 'string' ? safe(input.title, 120) || photo.title : photo.title;
     const category = typeof input.category === 'string' ? safe(input.category, 50) || photo.category : photo.category;
     const alt = typeof input.alt === 'string' ? safe(input.alt, 160) || photo.alt : photo.alt;
-    await run('UPDATE photos SET title = ?, category = ?, alt = ?, published = ?, updatedAt = ? WHERE id = ?', [title, category, alt, published, new Date().toISOString(), photoId]);
+    await run('UPDATE photos SET title = ?, category = ?, alt = ?, published = ?, "updatedAt" = ? WHERE id = ?', [title, category, alt, published, new Date().toISOString(), photoId]);
     const updated = await get('SELECT * FROM photos WHERE id = ?', [photoId]);
     return send(res, 200, updated);
   }
@@ -246,7 +199,7 @@ async function api(req, res, url) {
     if (!requireAdmin(req, res)) return;
     const photoId = url.pathname.split('/').pop();
     const result = await run('DELETE FROM photos WHERE id = ?', [photoId]);
-    if (result.changes === 0) return send(res, 404, { error: 'Photo not found.' });
+    if (result.rowCount === 0) return send(res, 404, { error: 'Photo not found.' });
     return send(res, 200, { ok: true });
   }
   return send(res, 404, { error: 'Not found.' });
