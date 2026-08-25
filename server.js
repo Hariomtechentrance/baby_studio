@@ -77,6 +77,7 @@ async function ensureSchema() {
   await run(`CREATE TABLE IF NOT EXISTS photos (id TEXT PRIMARY KEY, title TEXT, category TEXT, alt TEXT, "imageUrl" TEXT, published INTEGER NOT NULL DEFAULT 1, "createdAt" TEXT NOT NULL, "updatedAt" TEXT NOT NULL)`);
   await run(`CREATE TABLE IF NOT EXISTS admin_users (id SERIAL PRIMARY KEY, username TEXT UNIQUE, salt TEXT, hash TEXT, "createdAt" TEXT NOT NULL, "updatedAt" TEXT NOT NULL)`);
   await run(`ALTER TABLE photos ADD COLUMN IF NOT EXISTS "isCover" INTEGER NOT NULL DEFAULT 0`);
+  await run(`ALTER TABLE photos ADD COLUMN IF NOT EXISTS "showInStory" INTEGER NOT NULL DEFAULT 0`);
 }
 async function seedLegacyPhotos() {
   const now = new Date().toISOString();
@@ -123,7 +124,7 @@ async function api(req, res, url) {
     return send(res, 201, { ok: true });
   }
   if (req.method === 'GET' && url.pathname === '/api/photos') {
-    const photos = await all('SELECT id,title,category,alt,"imageUrl",published,"isCover","createdAt" FROM photos WHERE published = 1 ORDER BY "createdAt" DESC');
+    const photos = await all('SELECT id,title,category,alt,"imageUrl",published,"isCover","showInStory","createdAt" FROM photos WHERE published = 1 ORDER BY "createdAt" DESC');
     return send(res, 200, photos);
   }
   if (req.method === 'GET' && url.pathname === '/api/admin/status') {
@@ -211,8 +212,9 @@ async function api(req, res, url) {
     const category = typeof input.category === 'string' ? safe(input.category, 50) || photo.category : photo.category;
     const alt = typeof input.alt === 'string' ? safe(input.alt, 160) || photo.alt : photo.alt;
     const isCover = typeof input.isCover === 'boolean' ? (input.isCover ? 1 : 0) : photo.isCover;
+    const showInStory = typeof input.showInStory === 'boolean' ? (input.showInStory ? 1 : 0) : photo.showInStory;
     if (isCover === 1) await run('UPDATE photos SET "isCover" = 0 WHERE category = ? AND id != ?', [category, photoId]);
-    await run('UPDATE photos SET title = ?, category = ?, alt = ?, published = ?, "isCover" = ?, "updatedAt" = ? WHERE id = ?', [title, category, alt, published, isCover, new Date().toISOString(), photoId]);
+    await run('UPDATE photos SET title = ?, category = ?, alt = ?, published = ?, "isCover" = ?, "showInStory" = ?, "updatedAt" = ? WHERE id = ?', [title, category, alt, published, isCover, showInStory, new Date().toISOString(), photoId]);
     const updated = await get('SELECT * FROM photos WHERE id = ?', [photoId]);
     return send(res, 200, updated);
   }

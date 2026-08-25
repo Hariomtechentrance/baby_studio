@@ -52,11 +52,13 @@ function renderPhotos(photoList) {
   photos.innerHTML = photoList.length ? photoList.map((photo) => {
     const published = photo.published === 1 || photo.published === true || photo.published === '1';
     const isCover = photo.isCover === 1 || photo.isCover === true;
+    const inStory = photo.showInStory === 1 || photo.showInStory === true;
     return `
       <article class="photo" data-published="${published ? '1' : '0'}">
         <img src="${escapeHtml(photo.imageUrl)}" alt="${escapeHtml(photo.alt)}">
         <div class="photo-meta">
           ${isCover ? '<span class="photo-cover-badge">★ Homepage cover</span>' : ''}
+          ${inStory ? '<span class="photo-story-badge">◆ In Our Story</span>' : ''}
           <div class="photo-title">${escapeHtml(photo.title)}</div>
           <div class="photo-label">${escapeHtml(photo.category)}</div>
           <div class="photo-status">${published ? 'Published' : 'Hidden'}</div>
@@ -66,6 +68,9 @@ function renderPhotos(photoList) {
           </div>
           <div class="photo-actions">
             <button class="secondary" data-action="cover" data-id="${photo.id}" data-cover="${isCover ? '1' : '0'}">${isCover ? 'Remove as cover' : 'Set as homepage cover'}</button>
+          </div>
+          <div class="photo-actions">
+            <button class="secondary" data-action="story" data-id="${photo.id}" data-story="${inStory ? '1' : '0'}">${inStory ? 'Remove from Our Story' : 'Add to Our Story'}</button>
           </div>
         </div>
       </article>`;
@@ -90,6 +95,17 @@ function renderPhotos(photoList) {
       button.addEventListener('click', async () => {
         const isCover = button.dataset.cover === '1';
         await request(`/api/admin/photos/${id}`, { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ isCover: !isCover }) });
+        loadDashboard();
+      });
+    }
+    if (button.dataset.action === 'story') {
+      button.addEventListener('click', async () => {
+        const inStory = button.dataset.story === '1';
+        if (!inStory) {
+          const currentCount = allPhotos.filter((p) => p.showInStory === 1 || p.showInStory === true).length;
+          if (currentCount >= 12 && !confirm('Our Story already shows 12 photos on the homepage. Add this one anyway? (Remove another first if you want it to display.)')) return;
+        }
+        await request(`/api/admin/photos/${id}`, { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ showInStory: !inStory }) });
         loadDashboard();
       });
     }

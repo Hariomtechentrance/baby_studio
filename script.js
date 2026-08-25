@@ -374,3 +374,19 @@ if (portfolioCards.length) {
         });
     }).catch(() => {});
 }
+
+// ===== About section photo grid (admin-managed) =====
+const aboutGalleryGrid = document.getElementById('aboutGalleryGrid');
+if (aboutGalleryGrid) {
+    fetch('/api/photos').then(r => r.json()).then(photos => {
+        const curated = photos.filter(photo => photo.showInStory);
+        const selected = curated.length ? curated : photos;
+        aboutGalleryGrid.innerHTML = selected.slice(0, 12).map(photo => {
+            const el = document.createElement('span');
+            el.textContent = photo.alt || photo.title || 'The Baby Studio photo';
+            const safeAlt = el.innerHTML;
+            const safeUrl = photo.imageUrl.replace(/"/g, '&quot;');
+            return `<div class="about-gallery-item"><img src="${safeUrl}" alt="${safeAlt}" loading="lazy"></div>`;
+        }).join('');
+    }).catch(() => {});
+}
