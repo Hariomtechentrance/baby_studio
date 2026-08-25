@@ -375,6 +375,17 @@ if (portfolioCards.length) {
     }).catch(() => {});
 }
 
+// ===== Reviews: see more / show less =====
+const testimonialsToggle = document.getElementById('testimonialsToggle');
+const testimonialsMore = document.getElementById('testimonialsMore');
+if (testimonialsToggle && testimonialsMore) {
+    testimonialsToggle.addEventListener('click', () => {
+        const expanded = !testimonialsMore.hidden;
+        testimonialsMore.hidden = expanded;
+        testimonialsToggle.textContent = expanded ? 'See more reviews' : 'Show fewer reviews';
+    });
+}
+
 // ===== About section photo grid (admin-managed) =====
 const aboutGalleryGrid = document.getElementById('aboutGalleryGrid');
 if (aboutGalleryGrid) {
