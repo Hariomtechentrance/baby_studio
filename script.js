@@ -401,3 +401,58 @@ if (aboutGalleryGrid) {
         }).join('');
     }).catch(() => {});
 }
+
+// ===== Photo Lightbox (click any gallery/portfolio photo to view it larger) =====
+(function () {
+    const clickableContainerSelector = '.about-gallery-item, .gallery-item, .portfolio-detail-item, .portfolio-detail-image, .package-plan-card';
+    let overlay, imageEl, captionEl, closeBtn;
+
+    function buildOverlay() {
+        overlay = document.createElement('div');
+        overlay.className = 'lightbox-overlay';
+        overlay.innerHTML = `
+            <button type="button" class="lightbox-close" aria-label="Close">&times;</button>
+            <img class="lightbox-image" alt="">
+            <p class="lightbox-caption"></p>
+        `;
+        document.body.appendChild(overlay);
+
+        imageEl = overlay.querySelector('.lightbox-image');
+        captionEl = overlay.querySelector('.lightbox-caption');
+        closeBtn = overlay.querySelector('.lightbox-close');
+
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay || e.target === closeBtn) closeLightbox();
+        });
+    }
+
+    function openLightbox(src, alt) {
+        if (!overlay) buildOverlay();
+        imageEl.src = src;
+        imageEl.alt = alt || '';
+        captionEl.textContent = alt || '';
+        captionEl.hidden = !alt;
+        overlay.classList.add('active');
+        document.body.classList.add('lightbox-open');
+    }
+
+    function closeLightbox() {
+        if (!overlay) return;
+        overlay.classList.remove('active');
+        document.body.classList.remove('lightbox-open');
+    }
+
+    // Delegated so it works for images rendered dynamically after this script runs
+    document.addEventListener('click', (e) => {
+        const img = e.target.closest('img');
+        if (!img) return;
+        const container = img.closest(clickableContainerSelector);
+        if (!container) return;
+        e.preventDefault();
+        openLightbox(img.currentSrc || img.src, img.alt);
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeLightbox();
+    });
+})();
